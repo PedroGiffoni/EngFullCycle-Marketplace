@@ -1,5 +1,7 @@
 # Operação, ambientes e defesa
 
+Atualização de publicação: a demonstração pública está ativa em Vercel + Render + Supabase. Endereços, revisão efetivamente publicada, TLS, papel restrito, diferenças de migração e comandos de verificação em [publicacao.md](publicacao.md). Os resultados abaixo de Compose, Jaeger e carga pertencem ao ambiente local; não confundir com medições de produção.
+
 ## Reproduzir
 
 Desenvolvimento: `docker compose up --build -d --wait`; galeria em http://localhost:3000. Homologação: `docker compose -f docker-compose.yml -f compose.homolog.yml up --build -d --wait`; http://localhost:3001. Volumes e nomes de projetos distintos. Migrações e quatro peças carregam ao iniciar. Para 100 mil pedidos: `docker compose exec app npm run seed`.

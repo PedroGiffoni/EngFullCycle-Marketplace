@@ -8,6 +8,8 @@
 
 **Forma Brasileira** é uma galeria comercial demonstrativa: explore a coleção, veja a luminária em 3D, monte a sacola, crie um pedido e confirme um pagamento simulado. Todos os produtos são fictícios. Os objetos nas imagens são ilustrações próprias, sem atribuição a designers reais.
 
+**Online, sem login:** [abrir na Vercel](https://forma-brasileira.vercel.app) · [alternativa no Render](https://forma-brasileira-api-7fo6.onrender.com). API e Redis no Render, PostgreSQL no Supabase, em planos gratuitos. A API pode demorar a retomar na primeira visita. [Publicação e evidências](docs/publicacao.md).
+
 <!-- Screenshot real gerado pelo Playwright contra API + PostgreSQL + Redis. -->
 ![Captura real do catálogo; produtos exibidos são ilustrações de peças fictícias](docs/evidencias/catalogo-desktop.png)
 
@@ -140,9 +142,9 @@ Saídas e capturas reais: [docs/evidencias](docs/evidencias). [Relatório de des
 
 ## Publicação e limites
 
-A configuração de demonstração em Vercel + Render está em [docs/publicacao.md](docs/publicacao.md) e [render.yaml](render.yaml). URLs públicas só serão anunciadas após o deploy e a compra verificados.
+A demonstração Vercel + Render + Supabase está publicada: smoke público de compra aprovado e 14 testes de navegador passaram em desktop/celular. O pagamento é inteiramente simulado. [Configuração e evidências](docs/publicacao.md) · [render.yaml](render.yaml).
 
-Deploy escolhido: recriação de um único monólito com Compose e verificação de prontidão. Instruções, flag, SLO e rollback em [operação](docs/operacao.md). Serviços publicados apenas em loopback. Antes de hospedagem pública: autenticação, política de acesso, gestão de segredos, gateway real, durabilidade/recuperação da fila e revisão dos achados SCA. Não foi publicado serviço público.
+Localmente, deploy por Compose com serviços em loopback. Na demonstração pública, Vercel serve a interface e Render executa o monólito com prontidão HTTP, PostgreSQL Supabase com papel restrito, RLS e TLS validado. Instruções, flag, SLO e rollback em [operação](docs/operacao.md). Uso comercial exigiria autenticação, gateway real, durabilidade da fila e revisão dos achados SCA.
 
 O app não guarda sacola entre recargas, não faz reserva de estoque e usa fontes com fallback local. Redis indisponível permite catálogo via banco; pagamentos dependem da fila. Se Redis perder eventos, reenvie pagamento pendente. Sem licença de distribuição definida; não presumir licença open source.
 

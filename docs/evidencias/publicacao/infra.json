@@ -1,0 +1,7 @@
+{
+  "vercel": {"project":"forma-brasileira","url":"https://forma-brasileira.vercel.app","public":true},
+  "render": {"serviceId":"srv-dbqapq8u01pc73dqgcsg","url":"https://forma-brasileira-api-7fo6.onrender.com","plan":"free","region":"virginia","healthCheck":"/ready","autoDeploy":"off","deployId":"dep-dbqar62f0oos73f2a53g","status":"live","commit":"dcd07e62b1fd4d379a8724cf8afbd0000529bf60"},
+  "supabase": {"project":"ygyvztysdjekemrujspf","organization":"PedroGiffoni","region":"us-east-1","quotedMonthlyCostUSD":0,"products":4,"seededOrders":100000,"seededItems":100000,"securityAdvisorLints":0,"applicationRole":"forma_app","roleSuperuser":false,"roleCreateDatabase":false,"roleCreateRole":false,"privateTableRLS":true},
+  "idempotence": {"orderId":"094d2700-f527-40e5-943b-4388b0146782","httpPaymentRequests":6,"receipts":1,"processed":1,"status":"paid"},
+  "tls": {"certificateSource":"https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt","fingerprintSHA256":"80:70:25:AD:50:D4:ED:21:9D:2C:9C:7D:29:9C:00:4F:82:4E:B0:0C:F7:F6:5A:FE:F6:07:D0:7B:72:E6:CA:FA","expires":"2031-04-26","rejectUnauthorized":true}
+}

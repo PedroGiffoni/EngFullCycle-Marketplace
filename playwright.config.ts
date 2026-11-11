@@ -9,7 +9,12 @@ export default defineConfig({
   },
   reporter: [
     ["list"],
-    ["json", { outputFile: "docs/evidencias/browser.json" }],
+    [
+      "json",
+      {
+        outputFile: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/browser.json`,
+      },
+    ],
   ],
   projects: [
     { name: "desktop", use: { viewport: { width: 1440, height: 1000 } } },

@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-11-11T18:03:29.656Z",
+  "base": "https://forma-brasileira.vercel.app",
+  "backend": "https://forma-brasileira-api-7fo6.onrender.com",
+  "anonymousPageStatus": 200,
+  "readyStatus": 200,
+  "products": 4,
+  "createdStatus": 201,
+  "orderId": "094d2700-f527-40e5-943b-4388b0146782",
+  "totalCents": 153000,
+  "paymentRequests": [
+    202,
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "paymentStatus": "paid",
+  "traceId": "884fc9984d157f280c73d792902947a2"
+}

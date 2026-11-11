@@ -12,7 +12,7 @@ test("catálogo real, filtros, detalhe, sacola, quantidade e pagamento", async (
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/evidencias/catalogo-${info.project.name}.png`,
+    path: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/catalogo-${info.project.name}.png`,
     fullPage: true,
   });
   await page.getByRole("button", { name: "Objetos", exact: true }).click();
@@ -26,14 +26,14 @@ test("catálogo real, filtros, detalhe, sacola, quantidade e pagamento", async (
   await page.getByRole("button", { name: "Ver Luminária Arco" }).click();
   await expect(page.locator("#product-dialog")).toBeVisible();
   await page.screenshot({
-    path: `docs/evidencias/detalhe-${info.project.name}.png`,
+    path: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/detalhe-${info.project.name}.png`,
   });
   await page.getByRole("button", { name: "Adicionar à sacola" }).click();
   await expect(page.locator("#cart-dialog")).toBeVisible();
   await page.getByRole("button", { name: "Aumentar Luminária Arco" }).click();
   await expect(page.locator("#cart-total")).toContainText("1.780,00");
   await page.screenshot({
-    path: `docs/evidencias/carrinho-${info.project.name}.png`,
+    path: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/carrinho-${info.project.name}.png`,
   });
   await page.keyboard.press("Escape");
   await expect(page.locator("#cart-dialog")).not.toBeVisible();
@@ -52,7 +52,7 @@ test("catálogo real, filtros, detalhe, sacola, quantidade e pagamento", async (
     { timeout: 20000 },
   );
   await page.screenshot({
-    path: `docs/evidencias/confirmacao-${info.project.name}.png`,
+    path: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/confirmacao-${info.project.name}.png`,
   });
   expect(errors).toEqual([]);
 });
@@ -122,7 +122,7 @@ test("3D tardio, teclado, retorno e liberação", async ({ page }, info) => {
     contentType: "application/json",
   });
   await page.screenshot({
-    path: `docs/evidencias/three-${info.project.name}.png`,
+    path: `${process.env.EVIDENCE_DIR ?? "docs/evidencias"}/three-${info.project.name}.png`,
   });
   await page.keyboard.press("Escape");
   await expect(page.locator("#three-host canvas")).toHaveCount(0);

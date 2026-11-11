@@ -1,5 +1,11 @@
 # Uso de IA
 
+## Publicação concluída com Supabase
+
+O usuário autorizou usar Supabase, confirmou a organização PedroGiffoni no plano free e aprovou credencial restrita exclusiva da API. Custo consultado: US$ 0/mês. Criado projeto forma-brasileira; projetos anteriores preservados. A proposta inicial com CREATE e associação de roles foi rejeitada pela revisão automática e não aplicada. O papel aprovado possui somente conexão e operações de dados nas tabelas privadas, sem privilégios administrativos; migração é preparada separadamente.
+
+Supabase RLS e advisors verificados. Primeiro deploy encontrou cadeia TLS privada; CA obtida no link oficial do painel e configurada com validação ativa. API publicada no Render free; frontend Vercel sem SSO conforme autorização. Smoke público confirmou catálogo, pedido e pagamento; seis reenvios geraram um único efeito confirmado por SQL. Contagem remota real: 100 mil pedidos sintéticos e itens. Os 14 testes de navegador passaram também pela URL pública; evidências separadas em docs/evidencias/publicacao. Fonte, permissões e limitações em docs/publicacao.md.
+
 ## Publicação solicitada
 
 Pedido adicional: “Vamos subir pra vercel e render pra facilitar vuzializacao”. Plano: Vercel para assets e proxy de API, Render para monólito, PostgreSQL e Redis, reaproveitando a aplicação. Skills de deploy de ambas plataformas lidas e referências oficiais atuais consultadas. Workspace Render exige confirmação explícita do conector. A revisão automática rejeitou remover SSO do projeto Vercel sem autorização específica; a mudança ficou pendente de resposta do usuário. Node 24 configurado independentemente.

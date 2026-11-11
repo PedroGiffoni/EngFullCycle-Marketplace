@@ -1,25 +1,54 @@
-# Publicação para demonstração — Vercel e Render
+# Demonstração publicada — Vercel, Render e Supabase
 
-Pedido do usuário: “Vamos subir pra vercel e render pra facilitar vuzializacao”. A publicação preserva a stack e o Compose local.
+## Endereços e verificação real
 
-Arquitetura escolhida: assets Vite na Vercel; chamadas `/api/*` encaminhadas por rewrite ao monólito Fastify no Render. PostgreSQL e Redis ficam no mesmo workspace/região do Render, com acesso externo bloqueado. Consumidor de pagamento permanece no processo do monólito. Sem chaves de banco no frontend e sem necessidade de CORS entre navegador e API. O Render também serve a vitrine como alternativa direta.
+- **Galeria pública, sem login:** https://forma-brasileira.vercel.app
+- **Backend e alternativa completa:** https://forma-brasileira-api-7fo6.onrender.com
+- **Prontidão:** https://forma-brasileira-api-7fo6.onrender.com/ready
+- Supabase: projeto `ygyvztysdjekemrujspf`, organização PedroGiffoni, us-east-1, plano free; custo consultado US$ 0/mês.
+- Render: serviço `srv-dbqapq8u01pc73dqgcsg`, free, virginia; deploy `dep-dbqar62f0oos73f2a53g` observado **live**, revisão `dcd07e62b1fd4d379a8724cf8afbd0000529bf60`.
+- Redis: `red-dbq9vd2jnfac73dab68g`, free, virginia, acesso interno e noeviction.
 
-`render.yaml` configura planos gratuitos de demonstração, PostgreSQL 17 e Redis com `noeviction`. Os 100 mil pedidos são preparados pelo seed determinístico quando `SEED_DEMO_ORDERS=true`. Migrações e catálogo continuam idempotentes. A imagem recebe sinais diretamente por `node --import tsx src/server.ts`. Readiness em `/ready`; porta fornecida pela plataforma.
+HTTP anônimo retornou 200 na vitrine e /ready. Catálogo retornou quatro peças. Pedido pela Vercel retornou 201 e R$ 1.530,00, com uma luminária e dois vasos. Seis requisições de pagamento do mesmo pedido terminaram em paid; SQL confirmou **um recibo e um registro de processamento**. Consulta remota confirmou **100.000 pedidos sintéticos e 100.000 itens sintéticos**; pedidos de testes ficam fora dessa contagem determinística.
 
-No ambiente público, `OTEL_TRACES_EXPORTER=none` evita tentativas de exportar para Jaeger local inexistente. Logs JSON, correlação e métricas continuam; não alegar trace remoto coletado sem configurar um coletor. Evidência de trace local permanece válida e separada.
+Evidências: [smoke HTTP](evidencias/public-smoke.json), [infraestrutura, TLS e consultas](evidencias/publicacao/infra.json), [navegador público](evidencias/publicacao). As medições k6 anteriores são locais, não benchmarks do Render.
 
-Limitações dos planos gratuitos, verificadas em [Render Free](https://render.com/docs/free): banco expira após 30 dias, Redis perde dados em reinício e o web service pode suspender por inatividade. São adequados à demonstração acadêmica. Em recuperação de fila, consultar/repetir o mesmo pedido pendente. Não usar os números do ambiente local como medição do Render.
+## Arquitetura
 
-Validação de estrutura: baixar o [schema oficial](https://render.com/schema/render.yaml.json) em `.verification/render-schema.json` e executar `node scripts/validate-render.mjs`. Validação da plataforma: `render blueprints validate render.yaml`, usando CLI autenticado quando exigido. Blueprint só é lido pelo Render depois do commit/push. Aprovação do plano é uma etapa distinta de validação; nenhuma publicação deve ser marcada pronta antes do deploy live/ready e compra verificada.
+```mermaid
+flowchart LR
+  visitor[Navegador] --> vercel[Vercel / assets Vite]
+  vercel -->|rewrite /api HTTPS| render[Render / Fastify + worker BullMQ]
+  render -->|Session Pooler IPv4 e TLS validado| db[(Supabase PostgreSQL)]
+  render <-->|rede interna| redis[(Render Redis)]
+  visitor -->|alternativa completa| render
+```
 
-Workspace My Workspace e acesso sem login confirmados pelo usuário. A proteção SSO foi removida do projeto Vercel `forma-brasileira`, na equipe PedroGiffoni's projects; Node 24 configurado. A Vercel já construiu a vitrine inicial. URL atribuída: https://forma-brasileira.vercel.app. Fluxo de compra público ainda depende da API.
+O navegador não recebe senha nem service_role. vercel.json preserva método/body/query de /api, evita cache da API e entrega HTML para URLs /pecas. Session Pooler IPv4 na porta 5432; DB_POOL_MAX=5. A API pública usa RUN_MIGRATIONS=false: tabelas foram preparadas como administrador a partir de scripts/migrate.ts. Compose local continua migrando automaticamente por padrão. Seed determinístico com SEED_DEMO_ORDERS=true.
 
-Plano Render gerado para revisão `2c2fe6757c3c1f9d57fcab3dad0107e40e420d8f`: Blueprint `exs-dbq9upijnfac73da9bu0`; três recursos novos com sufixo 7fo6, todos free, mesma região virginia. Não adota nem altera outros projetos. Sincronização automática de infraestrutura desativada (`autoSync=false`); deploy do serviço configurado para CI verde. O conector exige aprovação explícita do plano revisado antes de aplicar. Existe outro PostgreSQL gratuito no workspace; o limite de instâncias pode impedir o provisionamento e precisa ser verificado na criação. O banco existente não faz parte deste plano.
+## Credencial e TLS
 
-`vercel.json` encaminha `/api/*` para o hostname proposto `forma-brasileira-api-7fo6.onrender.com`, preserva query/body/método, impede cache das respostas da API e entrega o HTML para URLs de peças. Confirmar hostname efetivo do serviço antes de declarar integração concluída. Render CLI oficial 2.36 foi baixado em `.verification` (ignorado); validação CLI requer login próprio, distinto do OAuth do conector. Schema oficial validou o YAML; planejamento do conector foi aceito.
+O usuário aprovou o projeto free e a credencial restrita forma_app. Esse papel não é superuser, não cria bancos/roles nem recebe associação administrativa. Possui CONNECT, USAGE nos três schemas, SELECT/INSERT/UPDATE nas cinco tabelas e USAGE na sequência de itens. Sem DELETE. RLS nas cinco tabelas, políticas apenas para forma_app e schemas não expostos pela Data API. Advisor de segurança retornou zero avisos.
 
-## Resultado real da primeira aplicação
+Primeiro deploy falhou com SELF_SIGNED_CERT_IN_CHAIN. Foi configurada a [CA oficial do painel Supabase](https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt), válida até 26/04/2031: DATABASE_SSL=true, DATABASE_CA_CERT e rejectUnauthorized=true. Fingerprint em infra.json. Credenciais ficam no ambiente Render, fora do Git e das evidências.
 
-Usuário aprovou os três recursos free do plano. Redis foi criado (`red-dbq9vd2jnfac73dab68g`). A sincronização `exe-dbq9uqajnfac73da9d80` falhou ao criar PostgreSQL: **cannot have more than one active free tier database**. O workspace já tem `os-manager-test-db`; ele permanece fora do escopo desta publicação. Criação da API foi cancelada pela dependência que falhou. Não houve upgrade pago nem alteração no banco existente.
+## Reproduzir
 
-Vercel: deployment `dpl_8bQuShdYXP4BbxLxgr7GBdfHzZMQ`, revisão `65905eda860718818f348daedfededde21fa19a4`, estado READY, produção sem SSO. HTTP anônimo da página retornou 200 e título correto. Isso comprova publicação dos assets, **não** funcionamento do catálogo/pagamento público. Alternativa gratuita proposta: PostgreSQL externo, aguardando autorização do usuário antes de provisionar.
+```powershell
+npx tsx scripts/verify-hosted.ts
+$env:BASE_URL='https://forma-brasileira.vercel.app'
+$env:EVIDENCE_DIR='docs/evidencias/publicacao'
+npm run test:browser
+```
+
+Para recriar: criar um Supabase free, preparar as tabelas como administrador e conceder a um papel exclusivo as permissões acima; fornecer senha forte pelo ambiente protegido, sem versioná-la. Configurar Session Pooler e CA no Render. O render.yaml contém variáveis não sensíveis e relações; DATABASE_URL é fornecida separadamente.
+
+**Gestão atual:** Vercel acompanha pushes de main. A API foi criada diretamente pelo conector após a falha do Blueprint; seu auto-deploy está **off**. Após CI verde, solicitar deploy manual da revisão desejada, aguardar live, conferir /ready e executar smoke. render.yaml é uma referência para nova instalação, não prova de sincronização ativa. Blueprint inicial exs-dbq9upijnfac73da9bu0 permanece pausado e associado ao Redis; revisar adoção/duplicação antes de sincronizar infraestrutura.
+
+## Impedimentos resolvidos e limites
+
+O banco Render foi recusado por “cannot have more than one active free tier database”; os-manager-test-db já ocupava a cota e foi preservado. O usuário autorizou Supabase; FoodSnap e MEMORA também foram preservados. Não houve upgrade pago.
+
+Os planos gratuitos têm cotas. Render pode suspender a API por inatividade, causando espera na primeira visita; Redis perde mensagens/cache em reinício. Supabase free pode pausar por inatividade. Consultar/repetir pagamento pendente usando o mesmo pedido. Sem cobrança real, autenticação de compradores, estoque ou promessa de disponibilidade contínua.
+
+A coleta remota de traces não foi configurada (OTEL_TRACES_EXPORTER=none); logs JSON e correlação continuam ativos. Evidências locais de Jaeger e k6 permanecem separadas.

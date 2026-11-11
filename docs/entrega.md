@@ -1,5 +1,7 @@
 # Entrega, reprodução e defesa — Projeto A
 
+**Demonstração pública:** [Vercel](https://forma-brasileira.vercel.app) · [Render](https://forma-brasileira-api-7fo6.onrender.com). Publicação com PostgreSQL Supabase free, smoke de compra aprovado, 14 testes de navegador públicos aprovados e 100 mil pedidos/itens sintéticos confirmados por SQL remoto. [Detalhes e evidências](publicacao.md). As limitações dos planos gratuitos e o auto-deploy manual da API estão documentados; disponibilidade contínua não foi medida.
+
 Fonte: enunciado oficial e cópia real em `evidencias/enunciado.html`. Inventário começou sem aplicação, repositório Git ou entregas anteriores no workspace. Repositório identificado depois pelo usuário: [PedroGiffoni/EngFullCycle-Marketplace](https://github.com/PedroGiffoni/EngFullCycle-Marketplace). CI verde observada na revisão 9c215cccf51415a5112be20bc6718e0333013550: [execução 43056909115](https://github.com/PedroGiffoni/EngFullCycle-Marketplace/actions/runs/43056909115); resumo real em evidencias/ci-green.json.
 
 ## Matriz final

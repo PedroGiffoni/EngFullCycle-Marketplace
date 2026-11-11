@@ -1,0 +1,27 @@
+
+> forma-brasileira@0.1.0 test:browser
+> playwright test
+
+
+Running 14 tests using 1 worker
+
+(node:49732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\flow.spec.ts:2:1 › catálogo real, filtros, detalhe, sacola, quantidade e pagamento (9.1s)
+  ok  2 [desktop] › tests\browser\flow.spec.ts:59:1 › histórico volta ao catálogo e URL direta abre uma peça (1.7s)
+  ok  3 [desktop] › tests\browser\flow.spec.ts:72:1 › falha ao alterar quantidade preserva subtotal e permite repetir (1.9s)
+  ok  4 [desktop] › tests\browser\flow.spec.ts:94:1 › 3D tardio, teclado, retorno e liberação (1.7s)
+  ok  5 [desktop] › tests\browser\flow.spec.ts:133:1 › WebGL indisponível mantém compra; carregamento lento mostra feedback (2.4s)
+  ok  6 [desktop] › tests\browser\flow.spec.ts:160:1 › falha de catálogo, repetição e seleção vazia (1.3s)
+  ok  7 [desktop] › tests\browser\flow.spec.ts:185:1 › contrastes reais de tokens (848ms)
+(node:56352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [mobile-reduced] › tests\browser\flow.spec.ts:2:1 › catálogo real, filtros, detalhe, sacola, quantidade e pagamento (4.1s)
+  ok  9 [mobile-reduced] › tests\browser\flow.spec.ts:59:1 › histórico volta ao catálogo e URL direta abre uma peça (2.2s)
+  ok 10 [mobile-reduced] › tests\browser\flow.spec.ts:72:1 › falha ao alterar quantidade preserva subtotal e permite repetir (1.9s)
+  ok 11 [mobile-reduced] › tests\browser\flow.spec.ts:94:1 › 3D tardio, teclado, retorno e liberação (1.5s)
+  ok 12 [mobile-reduced] › tests\browser\flow.spec.ts:133:1 › WebGL indisponível mantém compra; carregamento lento mostra feedback (2.4s)
+  ok 13 [mobile-reduced] › tests\browser\flow.spec.ts:160:1 › falha de catálogo, repetição e seleção vazia (1.3s)
+  ok 14 [mobile-reduced] › tests\browser\flow.spec.ts:185:1 › contrastes reais de tokens (818ms)
+
+  14 passed (34.6s)
