@@ -121,7 +121,7 @@ document.querySelectorAll<HTMLButtonElement>("[data-category]").forEach(
       void loadCatalog(button.dataset.category);
     }),
 );
-async function openProduct(id: string) {
+async function openProduct(id: string, updateHistory = true) {
   try {
     selected = await api<Product>(`/api/products/${id}`);
     catalogScroll = window.scrollY;
@@ -141,7 +141,13 @@ async function openProduct(id: string) {
     $("load-three").hidden = !selected.model;
     $("load-three").textContent = "Ver em 3D";
     $<HTMLButtonElement>("load-three").disabled = false;
-    productDialog.showModal();
+    if (updateHistory)
+      history.pushState(
+        { fromCatalog: true },
+        "",
+        `/pecas/${encodeURIComponent(id)}`,
+      );
+    if (!productDialog.open) productDialog.showModal();
     reveal(productDialog);
   } catch (error) {
     $("catalog-state").textContent = (error as Error).message;
@@ -157,6 +163,10 @@ productDialog.addEventListener("close", () => {
   $("reset-three").hidden = true;
   $("three-status").textContent = "";
   window.scrollTo(0, catalogScroll);
+  if (location.pathname.startsWith("/pecas/")) {
+    if (history.state?.fromCatalog) history.back();
+    else history.replaceState(null, "", "/");
+  }
 });
 $("load-three").onclick = async () => {
   const button = $<HTMLButtonElement>("load-three");
@@ -308,6 +318,7 @@ $("checkout").onclick = async () => {
     $("cart-feedback").className = "success confirmation";
     $("cart-feedback").textContent =
       `✓ Pagamento simulado confirmado. Pedido ${id}. Nenhuma cobrança real.`;
+    reveal($("cart-feedback"));
     pending = undefined;
     button.textContent = "Pedido confirmado";
   } catch (error) {
@@ -324,3 +335,10 @@ $("checkout").onclick = async () => {
 reveal($("hero"));
 void loadCatalog();
 renderCart();
+window.addEventListener("popstate", () => {
+  const id = location.pathname.match(/^\/pecas\/([^/]+)$/)?.[1];
+  if (id) void openProduct(decodeURIComponent(id), false);
+  else if (productDialog.open) productDialog.close();
+});
+const initialProduct = location.pathname.match(/^\/pecas\/([^/]+)$/)?.[1];
+if (initialProduct) void openProduct(decodeURIComponent(initialProduct), false);

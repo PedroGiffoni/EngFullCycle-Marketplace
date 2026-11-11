@@ -1,0 +1,8 @@
+{
+  "catalogCount": 4,
+  "catalogStatus": 200,
+  "paymentStatus": 500,
+  "paymentBody": "{\"error\":\"Não foi possível concluir. Tente novamente.\",\"requestId\":\"ea556a5d-d7f3-4273-85f8-af606c24607d\"}",
+  "orderId": "1ef820bd-2e45-4381-b4b6-ce51175700ac",
+  "capturedAt": "2026-11-11T16:15:08.9772242Z"
+}

@@ -4,7 +4,8 @@ permissions:
   contents: read
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     services:
       postgres:
         image: postgres:17-alpine
@@ -35,7 +36,8 @@ jobs:
       - run: npm audit --audit-level=high
       - run: npm run build
       - run: npm run seed && npm run verify:seed && npm run seed && npm run verify:seed
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
+        timeout-minutes: 5
       - run: npm start > /tmp/forma.log 2>&1 &
       - run: node scripts/wait-ready.mjs
       - run: npm run test:browser

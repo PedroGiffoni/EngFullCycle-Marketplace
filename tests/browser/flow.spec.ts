@@ -38,7 +38,15 @@ test("catálogo real, filtros, detalhe, sacola, quantidade e pagamento", async (
   await page.keyboard.press("Escape");
   await expect(page.locator("#cart-dialog")).not.toBeVisible();
   await page.locator("#open-cart").click();
+  await page.route("**/api/orders/*/payments", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    await route.continue();
+  });
   await page.getByRole("button", { name: "Criar pedido e pagar" }).click();
+  await expect(page.locator("#checkout")).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Aumentar Luminária Arco" }),
+  ).toBeDisabled();
   await expect(page.locator("#cart-feedback")).toContainText(
     "Pagamento simulado confirmado",
     { timeout: 20000 },
@@ -47,6 +55,41 @@ test("catálogo real, filtros, detalhe, sacola, quantidade e pagamento", async (
     path: `docs/evidencias/confirmacao-${info.project.name}.png`,
   });
   expect(errors).toEqual([]);
+});
+test("histórico volta ao catálogo e URL direta abre uma peça", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Ver Luminária Arco" }).click();
+  await expect(page).toHaveURL(/\/pecas\/luminaria-arco$/);
+  await page.goBack();
+  await expect(page.locator("#product-dialog")).not.toBeVisible();
+  await page.goto("/pecas/luminaria-arco");
+  await expect(page.locator("#product-title")).toHaveText("Luminária Arco");
+  await page.keyboard.press("Escape");
+  await expect(page).toHaveURL(/\/$/);
+});
+test("falha ao alterar quantidade preserva subtotal e permite repetir", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Ver Luminária Arco" }).click();
+  await page.getByRole("button", { name: "Adicionar à sacola" }).click();
+  await page.route("**/api/products/luminaria-arco", (route) =>
+    route.fulfill({
+      status: 500,
+      contentType: "application/json",
+      body: '{"error":"Falha instrumentada"}',
+    }),
+  );
+  await page.getByRole("button", { name: "Aumentar Luminária Arco" }).click();
+  await expect(page.locator("#cart-feedback")).toContainText(
+    "Quantidade preservada",
+  );
+  await expect(page.locator("#cart-total")).toContainText("890,00");
+  await page.unroute("**/api/products/luminaria-arco");
+  await page.getByRole("button", { name: "Aumentar Luminária Arco" }).click();
+  await expect(page.locator("#cart-total")).toContainText("1.780,00");
 });
 test("3D tardio, teclado, retorno e liberação", async ({ page }, info) => {
   const resources: string[] = [];
@@ -74,12 +117,10 @@ test("3D tardio, teclado, retorno e liberação", async ({ page }, info) => {
         transferSize: (e as PerformanceResourceTiming).transferSize,
       })),
   }));
-  await test
-    .info()
-    .attach("custo-3d", {
-      body: JSON.stringify(measurements),
-      contentType: "application/json",
-    });
+  await test.info().attach("custo-3d", {
+    body: JSON.stringify(measurements),
+    contentType: "application/json",
+  });
   await page.screenshot({
     path: `docs/evidencias/three-${info.project.name}.png`,
   });
@@ -169,10 +210,8 @@ test("contrastes reais de tokens", async ({ page }) => {
   };
   for (const value of Object.values(result))
     expect(value).toBeGreaterThanOrEqual(4.5);
-  await test
-    .info()
-    .attach("contraste", {
-      body: JSON.stringify(result),
-      contentType: "application/json",
-    });
+  await test.info().attach("contraste", {
+    body: JSON.stringify(result),
+    contentType: "application/json",
+  });
 });

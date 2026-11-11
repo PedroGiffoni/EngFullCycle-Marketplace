@@ -161,12 +161,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1469,
+                  "duration": 2240,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:45.821Z",
+                  "startTime": "2026-11-11T16:17:10.664Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -184,12 +184,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1635,
+                  "duration": 2185,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:52.334Z",
+                  "startTime": "2026-11-11T16:17:19.760Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -200,6 +200,120 @@
           "id": "f353db48c569834dc22b-6c2acfd69b25a01da586",
           "file": "flow.spec.ts",
           "line": 2,
+          "column": 1
+        },
+        {
+          "title": "histórico volta ao catálogo e URL direta abre uma peça",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 898,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T16:17:13.013Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 822,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T16:17:22.075Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-d1eaf2eabaf120232054",
+          "file": "flow.spec.ts",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "falha ao alterar quantidade preserva subtotal e permite repetir",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 958,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T16:17:13.922Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1005,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T16:17:22.904Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-d2111ba6ac07141b9120",
+          "file": "flow.spec.ts",
+          "line": 72,
           "column": 1
         },
         {
@@ -218,18 +332,18 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1081,
+                  "duration": 1065,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:47.410Z",
+                  "startTime": "2026-11-11T16:17:14.891Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "custo-3d",
                       "contentType": "application/json",
-                      "body": "eyJhY3RpdmF0aW9uIjpbNTUuMTk5OTk5OTk5MjU0OTRdLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6OC44OTk5OTk5OTg1MDk4ODQsInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
+                      "body": "eyJhY3RpdmF0aW9uIjpbNTkuMzAwMDAwMDAwNzQ1MDZdLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6Ni4zMDAwMDAwMDA3NDUwNTgsInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
                     }
                   ]
                 }
@@ -247,18 +361,18 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1075,
+                  "duration": 1029,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:54.097Z",
+                  "startTime": "2026-11-11T16:17:23.917Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "custo-3d",
                       "contentType": "application/json",
-                      "body": "eyJhY3RpdmF0aW9uIjpbNjVdLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6Ni42OTk5OTk5OTkyNTQ5NDIsInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
+                      "body": "eyJhY3RpdmF0aW9uIjpbNTYuNzk5OTk5OTk3MDE5NzddLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6Ni4xOTk5OTk5OTkyNTQ5NDIsInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
                     }
                   ]
                 }
@@ -268,7 +382,7 @@
           ],
           "id": "f353db48c569834dc22b-7466cf58e8b2b07689f8",
           "file": "flow.spec.ts",
-          "line": 51,
+          "line": 94,
           "column": 1
         },
         {
@@ -287,12 +401,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1675,
+                  "duration": 1663,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:48.500Z",
+                  "startTime": "2026-11-11T16:17:15.963Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -310,12 +424,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1708,
+                  "duration": 1692,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:55.179Z",
+                  "startTime": "2026-11-11T16:17:24.953Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -325,7 +439,7 @@
           ],
           "id": "f353db48c569834dc22b-eb6c86e85c8bb81e258d",
           "file": "flow.spec.ts",
-          "line": 92,
+          "line": 133,
           "column": 1
         },
         {
@@ -344,12 +458,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 842,
+                  "duration": 832,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:50.185Z",
+                  "startTime": "2026-11-11T16:17:17.632Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -367,12 +481,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 825,
+                  "duration": 841,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:56.893Z",
+                  "startTime": "2026-11-11T16:17:26.651Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -382,7 +496,7 @@
           ],
           "id": "f353db48c569834dc22b-4b8434399dc6e726f9d7",
           "file": "flow.spec.ts",
-          "line": 119,
+          "line": 160,
           "column": 1
         },
         {
@@ -401,12 +515,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 727,
+                  "duration": 685,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:51.033Z",
+                  "startTime": "2026-11-11T16:17:18.474Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -430,12 +544,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 709,
+                  "duration": 706,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-11T16:13:57.726Z",
+                  "startTime": "2026-11-11T16:17:27.499Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -451,7 +565,7 @@
           ],
           "id": "f353db48c569834dc22b-68e0642602e1591bee3b",
           "file": "flow.spec.ts",
-          "line": 144,
+          "line": 185,
           "column": 1
         }
       ]
@@ -459,9 +573,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-11T16:13:45.367Z",
-    "duration": 13185.841,
-    "expected": 10,
+    "startTime": "2026-11-11T16:17:10.178Z",
+    "duration": 18137.183,
+    "expected": 14,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
