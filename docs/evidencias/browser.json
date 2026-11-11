@@ -1,0 +1,469 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\playwright.config.ts",
+    "rootDir": "C:/Users/Pedro/Desktop/EngFullCycle/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Pedro/Desktop/EngFullCycle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "C:/Users/Pedro/Desktop/EngFullCycle/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/Pedro/Desktop/EngFullCycle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-reduced",
+        "name": "mobile-reduced",
+        "testDir": "C:/Users/Pedro/Desktop/EngFullCycle/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\tests\\browser",
+        "snapshotDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://localhost:3000",
+          "trace": "retain-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile-reduced",
+        "testDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\tests\\browser",
+        "snapshotDir": "C:\\Users\\Pedro\\Desktop\\EngFullCycle\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://localhost:3000",
+          "trace": "retain-on-failure",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "isMobile": true,
+          "hasTouch": true,
+          "reducedMotion": "reduce"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile-reduced"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidencias/browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "flow.spec.ts",
+      "file": "flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "catálogo real, filtros, detalhe, sacola, quantidade e pagamento",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5547,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:38.761Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1602,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:50.070Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-6c2acfd69b25a01da586",
+          "file": "flow.spec.ts",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "3D tardio, teclado, retorno e liberação",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1503,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:44.439Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "custo-3d",
+                      "contentType": "application/json",
+                      "body": "eyJhY3RpdmF0aW9uIjpbNjUuMDk5OTk5OTk5NjI3NDddLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6NS45MDAwMDAwMDAzNzI1MjksInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:51.782Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "custo-3d",
+                      "contentType": "application/json",
+                      "body": "eyJhY3RpdmF0aW9uIjpbNTUuNTk5OTk5OTk5NjI3NDddLCJyZXNvdXJjZXMiOlt7Im5hbWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvYXNzZXRzL3RocmVlLXZpZXctQ2JqZzFVVUwuanMiLCJkdXJhdGlvbiI6Ni4wOTk5OTk5OTk2Mjc0NzEsInRyYW5zZmVyU2l6ZSI6NTMzODM1fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-7466cf58e8b2b07689f8",
+          "file": "flow.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "WebGL indisponível mantém compra; carregamento lento mostra feedback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2035,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:45.952Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1691,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:52.827Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-eb6c86e85c8bb81e258d",
+          "file": "flow.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "falha de catálogo, repetição e seleção vazia",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 818,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:47.996Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 821,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:54.528Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-4b8434399dc6e726f9d7",
+          "file": "flow.spec.ts",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "contrastes reais de tokens",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 697,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:48.822Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "contraste",
+                      "contentType": "application/json",
+                      "body": "eyJpbmtQYXBlciI6MTQuMjU1OTAwMjU5MzU2Mzc1LCJtdXRlZFBhcGVyIjo2LjQ2OTU1NjkwMDE5ODQ3Niwid2hpdGVDbGF5Ijo2LjgxODY1Mjg2MzMwNzYxNiwiY2xheVBhcGVyIjo2LjMxMzM0OTU1Njg5ODkzNn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-reduced",
+              "projectName": "mobile-reduced",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 692,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T13:55:55.358Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "contraste",
+                      "contentType": "application/json",
+                      "body": "eyJpbmtQYXBlciI6MTQuMjU1OTAwMjU5MzU2Mzc1LCJtdXRlZFBhcGVyIjo2LjQ2OTU1NjkwMDE5ODQ3Niwid2hpdGVDbGF5Ijo2LjgxODY1Mjg2MzMwNzYxNiwiY2xheVBhcGVyIjo2LjMxMzM0OTU1Njg5ODkzNn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-68e0642602e1591bee3b",
+          "file": "flow.spec.ts",
+          "line": 36,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-11T13:55:38.237Z",
+    "duration": 17920.838,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "capturedAt": "2026-11-11T13:55:39.844Z",
+  "orderId": "9e00b29d-6a1c-4835-a95e-2785570b8ad2",
+  "traceId": "8cf0dc1a6ab92b37cb76125abf466e3d",
+  "jaeger": "http://localhost:16686/trace/8cf0dc1a6ab92b37cb76125abf466e3d",
+  "payment": "paid"
+}

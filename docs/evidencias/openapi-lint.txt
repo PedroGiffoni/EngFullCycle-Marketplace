@@ -1,0 +1,9 @@
+
+> forma-brasileira@0.1.0 lint:api
+> redocly lint docs/openapi.yaml
+
+validating docs\openapi.yaml...
+docs\openapi.yaml: validated in 35ms
+
+Woohoo! Your API description is valid. 🎉
+

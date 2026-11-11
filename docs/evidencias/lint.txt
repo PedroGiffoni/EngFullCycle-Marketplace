@@ -1,0 +1,5 @@
+
+> forma-brasileira@0.1.0 lint
+> eslint src web scripts tests && tsc --noEmit && node scripts/boundaries.mjs
+
+Fronteiras de módulos verificadas.

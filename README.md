@@ -159,4 +159,3 @@ O app não guarda sacola entre recargas, não faz reserva de estoque e usa fonte
 Estrutura: `src/modules` contém os três módulos; `src/platform` infraestrutura; `web` interface; `scripts` migração/seed/verificação; `tests` domínio/integração/contrato/browser; `load` k6. Para contribuir, rode os checks, preserve fronteiras e atualize documentação/evidências quando mudar comportamento.
 
 [Enunciado oficial do curso](https://henriquelopeslima.github.io/diglass/aulas/24-projeto-final.html): entrega até 13/11; apresentação opcional em 16/11 ou vídeo até 13/11. Confirmar ano com docente.
-

@@ -1,0 +1,10 @@
+                                                         QUERY PLAN                                                         
+----------------------------------------------------------------------------------------------------------------------------
+ Index Scan using products_pkey on products  (cost=0.15..61.35 rows=880 width=64) (actual time=0.048..0.050 rows=4 loops=1)
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=69
+ Planning Time: 0.634 ms
+ Execution Time: 0.089 ms
+(6 rows)
+

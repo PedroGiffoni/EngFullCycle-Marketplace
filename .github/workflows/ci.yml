@@ -1,0 +1,49 @@
+name: CI Projeto A
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: forma
+          POSTGRES_PASSWORD: forma_ci_only
+          POSTGRES_DB: forma_test
+        ports: ['55432:5432']
+        options: --health-cmd "pg_isready -U forma -d forma_test" --health-interval 5s --health-timeout 5s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgres://forma:forma_ci_only@localhost:55432/forma_test
+      REDIS_URL: redis://localhost:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run lint:api
+      - run: npm run migrate
+      - run: npm run coverage
+      - run: npm audit --audit-level=high
+      - run: npm run build
+      - run: npm run seed && npm run verify:seed && npm run seed && npm run verify:seed
+      - run: npx playwright install --with-deps chromium
+      - run: npm start > /tmp/forma.log 2>&1 &
+      - run: node scripts/wait-ready.mjs
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidencias
+          path: |
+            coverage/
+            docs/evidencias/
+            test-results/

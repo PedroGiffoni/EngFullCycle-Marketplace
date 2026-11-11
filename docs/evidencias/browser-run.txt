@@ -1,0 +1,23 @@
+
+> forma-brasileira@0.1.0 test:browser
+> playwright test
+
+
+Running 10 tests using 1 worker
+
+(node:51000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\flow.spec.ts:2:1 › catálogo real, filtros, detalhe, sacola, quantidade e pagamento (5.5s)
+  ok  2 [desktop] › tests\browser\flow.spec.ts:19:1 › 3D tardio, teclado, retorno e liberação (1.5s)
+  ok  3 [desktop] › tests\browser\flow.spec.ts:27:1 › WebGL indisponível mantém compra; carregamento lento mostra feedback (2.0s)
+  ok  4 [desktop] › tests\browser\flow.spec.ts:32:1 › falha de catálogo, repetição e seleção vazia (818ms)
+  ok  5 [desktop] › tests\browser\flow.spec.ts:36:1 › contrastes reais de tokens (697ms)
+(node:48308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [mobile-reduced] › tests\browser\flow.spec.ts:2:1 › catálogo real, filtros, detalhe, sacola, quantidade e pagamento (1.6s)
+  ok  7 [mobile-reduced] › tests\browser\flow.spec.ts:19:1 › 3D tardio, teclado, retorno e liberação (1.0s)
+  ok  8 [mobile-reduced] › tests\browser\flow.spec.ts:27:1 › WebGL indisponível mantém compra; carregamento lento mostra feedback (1.7s)
+  ok  9 [mobile-reduced] › tests\browser\flow.spec.ts:32:1 › falha de catálogo, repetição e seleção vazia (821ms)
+  ok 10 [mobile-reduced] › tests\browser\flow.spec.ts:36:1 › contrastes reais de tokens (692ms)
+
+  10 passed (17.9s)

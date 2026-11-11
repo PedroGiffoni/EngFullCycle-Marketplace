@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Forma Brasileira API
+  version: 0.1.0
+  description: Marketplace acadêmico com produtos fictícios e pagamento simulado. Sem autenticação; uso local.
+  license:
+    name: Uso acadêmico; licença de distribuição ainda não definida
+    identifier: LicenseRef-Academic
+servers:
+  - url: http://localhost:3000
+    description: Desenvolvimento local
+security: []
+tags:
+  - name: Catálogo
+    description: Peças demonstrativas
+  - name: Pedidos
+    description: Preços calculados pelo servidor
+paths:
+  /api/products:
+    get:
+      operationId: listProducts
+      summary: Listar peças
+      tags: [Catálogo]
+      parameters:
+        - in: query
+          name: category
+          schema: {type: string, enum: [Iluminação, Objetos, Mobiliário]}
+          example: Objetos
+      responses:
+        '200':
+          description: Catálogo atual (cache por até 30 segundos)
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProductList'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '500': {$ref: '#/components/responses/ServerError'}
+  /api/products/{id}:
+    get:
+      operationId: getProduct
+      summary: Consultar peça
+      tags: [Catálogo]
+      parameters:
+        - {$ref: '#/components/parameters/ProductId'}
+      responses:
+        '200':
+          description: Peça encontrada
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Product'}
+              example: {id: luminaria-arco, name: Luminária Arco, category: Iluminação, material: Alumínio pintado e madeira, dimensions: 40 × 24 × 24 cm, description: Luz baixa para a mesa., priceCents: 89000, image: /images/luminaria.svg, model: true, fictional: true}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/ServerError'}
+  /api/orders:
+    post:
+      operationId: createOrder
+      summary: Criar pedido com preço congelado
+      tags: [Pedidos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/CreateOrder'}
+            example: {items: [{productId: luminaria-arco, quantity: 1}]}
+      responses:
+        '201':
+          description: Pedido e itens persistidos atomicamente
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Order'}
+              example: {id: '11111111-1111-4111-8111-111111111111', status: pending, totalCents: 89000, items: [{productId: luminaria-arco, name: Luminária Arco, quantity: 1, priceCents: 89000}]}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/Invalid'}
+        '500': {$ref: '#/components/responses/ServerError'}
+  /api/orders/{id}:
+    get:
+      operationId: getOrder
+      summary: Consultar pedido e pagamento
+      tags: [Pedidos]
+      parameters:
+        - {$ref: '#/components/parameters/OrderId'}
+      responses:
+        '200':
+          description: Estado atual do pedido
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Order'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/ServerError'}
+  /api/orders/{id}/payments:
+    post:
+      operationId: simulatePayment
+      summary: Enfileirar pagamento simulado idempotente
+      description: Chave estável payment-{orderId}. Reenvios não criam nova cobrança. Consultar GET do pedido até paid.
+      tags: [Pedidos]
+      parameters:
+        - {$ref: '#/components/parameters/OrderId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {type: object, additionalProperties: false}
+            example: {}
+      responses:
+        '202':
+          description: Evento aceito pela fila
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Payment'}
+              example: {orderId: '11111111-1111-4111-8111-111111111111', status: processing}
+        '200':
+          description: Pedido já pago
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Payment'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/ServerError'}
+components:
+  parameters:
+    ProductId:
+      in: path
+      name: id
+      required: true
+      schema: {type: string}
+      example: luminaria-arco
+    OrderId:
+      in: path
+      name: id
+      required: true
+      schema: {type: string, format: uuid}
+      example: '11111111-1111-4111-8111-111111111111'
+  responses:
+    BadRequest:
+      description: Corpo ou parâmetro inválido
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example: {error: Quantidade inválida., requestId: '11111111-1111-4111-8111-111111111111'}
+    NotFound:
+      description: Peça ou pedido não encontrado
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Invalid:
+      description: Regra de domínio rejeitada
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    ServerError:
+      description: Falha interna; não confirmar pagamento
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+  schemas:
+    Product:
+      type: object
+      additionalProperties: false
+      required: [id, name, category, material, dimensions, description, priceCents, image, model, fictional]
+      properties:
+        id: {type: string}
+        name: {type: string}
+        category: {type: string, enum: [Iluminação, Objetos, Mobiliário]}
+        material: {type: string}
+        dimensions: {type: string}
+        description: {type: string}
+        priceCents: {type: integer, minimum: 1}
+        image: {type: string}
+        model: {type: boolean}
+        fictional: {type: boolean, const: true}
+    ProductList:
+      type: object
+      required: [products]
+      properties:
+        products: {type: array, items: {$ref: '#/components/schemas/Product'}}
+    CreateOrder:
+      type: object
+      additionalProperties: false
+      required: [items]
+      properties:
+        items:
+          type: array
+          minItems: 1
+          maxItems: 30
+          items:
+            type: object
+            additionalProperties: false
+            required: [productId, quantity]
+            properties:
+              productId: {type: string, minLength: 1, maxLength: 80}
+              quantity: {type: integer, minimum: 1, maximum: 20}
+    OrderItem:
+      type: object
+      required: [productId, name, quantity, priceCents]
+      properties:
+        productId: {type: string}
+        name: {type: string}
+        quantity: {type: integer, minimum: 1, maximum: 20}
+        priceCents: {type: integer, minimum: 1}
+    Order:
+      type: object
+      required: [id, status, totalCents, items]
+      properties:
+        id: {type: string, format: uuid}
+        status: {type: string, enum: [pending, paid]}
+        totalCents: {type: integer, minimum: 1}
+        items: {type: array, minItems: 1, items: {$ref: '#/components/schemas/OrderItem'}}
+    Payment:
+      type: object
+      required: [orderId, status]
+      properties:
+        orderId: {type: string, format: uuid}
+        status: {type: string, enum: [processing, paid]}
+    Error:
+      type: object
+      required: [error, requestId]
+      properties:
+        error: {type: string}
+        requestId: {type: string}
