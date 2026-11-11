@@ -36,6 +36,11 @@ async function api<T>(path: string, body?: unknown): Promise<T> {
     headers: body === undefined ? {} : { "content-type": "application/json" },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
+  if (!response.headers.get("content-type")?.includes("application/json")) {
+    throw Error(
+      "Serviço temporariamente indisponível. Tente novamente em instantes.",
+    );
+  }
   const data = await response.json();
   if (!response.ok) throw Error(data.error ?? "Serviço indisponível.");
   return data;
