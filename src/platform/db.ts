@@ -3,7 +3,18 @@ export const pool = new pg.Pool({
   connectionString:
     process.env.DATABASE_URL ??
     "postgres://forma:forma_local@localhost:55432/forma",
-  max: 20,
+  max: Number(process.env.DB_POOL_MAX ?? 20),
+  connectionTimeoutMillis: 10000,
+  ...(process.env.DATABASE_SSL === "true"
+    ? {
+        ssl: {
+          rejectUnauthorized: true,
+          ...(process.env.DATABASE_CA_CERT
+            ? { ca: process.env.DATABASE_CA_CERT }
+            : {}),
+        },
+      }
+    : {}),
 });
 export interface Queryable {
   query: pg.Pool["query"];

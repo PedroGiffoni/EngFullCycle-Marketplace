@@ -11,7 +11,7 @@ import { SimulatedPayment } from "./modules/payments/simulated.js";
 import { buildApp } from "./app.js";
 import { migrate } from "../scripts/migrate.js";
 import { seedProducts, seedOrders } from "../scripts/seed.js";
-await migrate();
+if (process.env.RUN_MIGRATIONS !== "false") await migrate();
 await seedProducts();
 if (process.env.SEED_DEMO_ORDERS === "true") {
   await seedOrders();

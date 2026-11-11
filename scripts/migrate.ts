@@ -8,6 +8,11 @@ CREATE TABLE IF NOT EXISTS orders.items(id bigserial PRIMARY KEY,order_id uuid N
 CREATE INDEX IF NOT EXISTS items_order_idx ON orders.items(order_id);
 CREATE TABLE IF NOT EXISTS payments.processed(event_id text PRIMARY KEY,order_id uuid NOT NULL UNIQUE,traceparent text NOT NULL,processed_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS payments.receipts(order_id uuid PRIMARY KEY,event_id text NOT NULL UNIQUE REFERENCES payments.processed(event_id),amount_cents integer NOT NULL CHECK(amount_cents>0));
+ALTER TABLE catalog.products ENABLE ROW LEVEL SECURITY;
+ALTER TABLE orders.orders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE orders.items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payments.processed ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payments.receipts ENABLE ROW LEVEL SECURITY;
 `);
 }
 if (process.argv[1]?.endsWith("migrate.ts")) {
