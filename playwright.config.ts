@@ -1,2 +1,26 @@
-import {defineConfig} from '@playwright/test';
-export default defineConfig({testDir:'./tests/browser',workers:1,timeout:45000,use:{baseURL:process.env.BASE_URL??'http://localhost:3000',trace:'retain-on-failure'},reporter:[['list'],['json',{outputFile:'docs/evidencias/browser.json'}]],projects:[{name:'desktop',use:{viewport:{width:1440,height:1000}}},{name:'mobile-reduced',use:{viewport:{width:360,height:800},isMobile:true,hasTouch:true,reducedMotion:'reduce'}}]});
+import { defineConfig } from "@playwright/test";
+export default defineConfig({
+  testDir: "./tests/browser",
+  workers: 1,
+  timeout: 45000,
+  use: {
+    baseURL: process.env.BASE_URL ?? "http://localhost:3000",
+    trace: "retain-on-failure",
+  },
+  reporter: [
+    ["list"],
+    ["json", { outputFile: "docs/evidencias/browser.json" }],
+  ],
+  projects: [
+    { name: "desktop", use: { viewport: { width: 1440, height: 1000 } } },
+    {
+      name: "mobile-reduced",
+      use: {
+        viewport: { width: 360, height: 800 },
+        isMobile: true,
+        hasTouch: true,
+        reducedMotion: "reduce",
+      },
+    },
+  ],
+});

@@ -44,9 +44,26 @@ docker compose up -d --no-deps app
 docker compose run --rm k6 run --summary-export=/results/cache-summary.json --out json=/results/cache-raw.json /scripts/scenario.js
 ```
 
-## Impedimento real
+## Comparativo controlado executado após a liberação do limite
 
-A revisão automática de permissões passou a falhar por limite de uso antes da atualização do SCA, após a linha de base. Não foi executada a segunda rodada. Nenhum “antes/depois” foi fabricado e o requisito comparativo continua pendente. Retomar com acesso autorizado à execução local, preservando o snapshot e os controles descritos.
+A revisão automática ficou temporariamente indisponível por limite de uso; após o horário indicado, voltou a autorizar execução. O comparativo foi concluído em `compose.benchmark.yml`, projeto **forma-benchmark**, banco **forma_benchmark**, Redis e portas próprios. Nenhum dado da galeria ou de homologação foi apagado. `reset-benchmark.ts` recusa qualquer banco/ambiente diferente do descartável nomeado. Ambas as consultas anteriores à carga confirmaram **exatamente 100.000 pedidos e 100.000 itens totais**, conforme `controlled-before-seed.txt` e `controlled-after-seed.txt`.
+
+Imagem idêntica nas duas rodadas: `sha256:e7cea7c13ce1a404e809dd85de95a8de13640b6836661cb97739a95c6215daa4` (`benchmark-image.txt`). Código funcional baseado em `0e107c8e73eda3b7a514d4263bca582eac78ff70`, mais configuração isolada de benchmark, antes dos ajustes posteriores de tratamento de falha da fila e formatação. Não atribuir os números a um commit posterior como se tivessem sido medidos nele. Nenhuma rota, consulta ou regra de domínio foi alterada entre as duas rodadas.
+
+Recursos observados: Docker Desktop Linux/WSL2, **24 CPUs lógicas e 33.235.824.640 bytes de memória** disponíveis ao engine, sem limites de contêiner (`benchmark-resources.json`). Mesmos três estágios, 50 s, 10 VUs, sem aquecimento dedicado. Mudou apenas a flag de cache. Banco e Redis descartáveis reiniciados/repovoados antes de cada fase. O seed não reinicia o processo PostgreSQL nem expulsa páginas do buffer; ruído de cache do sistema e serviços paralelos permanecem limitações.
+
+| Indicador | Sem cache | Com cache | Variação |
+|---|---:|---:|---:|
+| p95 catálogo | 1,406749 ms | 1,450427 ms | **+3,10% (piora)** |
+| p95 consulta pedido | 2,164270 ms | 2,086564 ms | −3,59% |
+| p95 criação | 9,316037 ms | 7,612085 ms | −18,29% |
+| Erros HTTP | 0% | 0% | Sem diferença |
+| Vazão total | 225,38 req/s | 226,47 req/s | +0,48% |
+| Requisições / iterações | 11.283 / 3.761 | 11.328 / 3.776 | Perfil fechado, contagem depende do tempo de resposta |
+
+**Conclusão:** a hipótese de melhorar o p95 do catálogo não foi confirmada; houve pequena piora. As variações de outras operações não demonstram causalidade do cache. Duas amostras locais sem repetição estatística não permitem alegar ganho global. Metas funcionais/latência foram atendidas nesse perfil; não há gargalo relevante comprovado no catálogo de quatro peças. Manter cache como exercício de flag/fallback, avaliar sua remoção se não surgir benefício com catálogo e carga maiores.
+
+Reproduzir a experiência completa no ambiente próprio: `powershell -File scripts/benchmark.ps1` na raiz. O script registra revisão, working tree, imagem, volume e comandos; restaura **somente** o ambiente descartável. Raw integral das três execuções foi comprimido sem perda: `baseline-raw.json.gz`, `controlled-before-raw.json.gz`, `controlled-after-raw.json.gz`. SHA-256 dos JSON originais em `raw-manifest.json`. Descomprimir com gzip ou biblioteca padrão Node/Python; os JSON originais de cerca de 40 MB cada permanecem ignorados pelo Git. Resumos, consoles e `comparison.json` estão versionados.
 
 ## Saber defender
 

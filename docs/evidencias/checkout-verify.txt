@@ -1,0 +1,48 @@
+
+> forma-brasileira@0.1.0 seed
+> tsx scripts/seed.ts
+
+Seed determinístico de 100.000 pedidos concluído.
+
+> forma-brasileira@0.1.0 verify:seed
+> tsx scripts/verify-seed.ts
+
+{"orders":100000,"items":100000}
+
+> forma-brasileira@0.1.0 coverage
+> vitest run --coverage
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/app[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32m✓[39m tests/contract.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 152[2mms[22m[39m
+ [32m✓[39m tests/integration.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 196[2mms[22m[39m
+ [32m✓[39m tests/domain.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m19 passed[39m[22m[90m (19)[39m
+[2m   Start at [22m 16:10:28
+[2m   Duration [22m 1.34s[2m (import 48%, tests 36%, transform 11%, worker 5%)[22m
+
+[34m % [39m[2mCoverage report from [22m[33mv8[39m
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |    87.71 |     100 |     100 |                   
+ src               |     100 |    70.83 |     100 |     100 |                   
+  app.ts           |     100 |    70.83 |     100 |     100 | 11-18             
+ ...odules/catalog |     100 |      100 |     100 |     100 |                   
+  cache.ts         |     100 |      100 |     100 |     100 |                   
+  public.ts        |       0 |        0 |       0 |       0 |                   
+  repository.ts    |     100 |      100 |     100 |     100 |                   
+ ...modules/orders |     100 |      100 |     100 |     100 |                   
+  domain.ts        |     100 |      100 |     100 |     100 |                   
+  index.public.ts  |       0 |        0 |       0 |       0 |                   
+  payment-port.ts  |     100 |      100 |     100 |     100 |                   
+  public.ts        |     100 |      100 |     100 |     100 |                   
+  repository.ts    |     100 |      100 |     100 |     100 |                   
+ ...dules/payments |     100 |      100 |     100 |     100 |                   
+  public.ts        |       0 |        0 |       0 |       0 |                   
+  simulated.ts     |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------

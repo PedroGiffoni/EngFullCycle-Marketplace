@@ -12,11 +12,11 @@ jobs:
           POSTGRES_USER: forma
           POSTGRES_PASSWORD: forma_ci_only
           POSTGRES_DB: forma_test
-        ports: ['55432:5432']
+        ports: ["55432:5432"]
         options: --health-cmd "pg_isready -U forma -d forma_test" --health-interval 5s --health-timeout 5s --health-retries 20
       redis:
         image: redis:7-alpine
-        ports: ['6379:6379']
+        ports: ["6379:6379"]
         options: --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 5s --health-retries 20
     env:
       DATABASE_URL: postgres://forma:forma_ci_only@localhost:55432/forma_test

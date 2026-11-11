@@ -1,1 +1,1 @@
-export {payOrder} from './payment-port.js';
+export { payOrder } from "./payment-port.js";

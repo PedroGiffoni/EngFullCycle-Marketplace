@@ -1,0 +1,17 @@
+Somente o banco descartável forma_benchmark foi reiniciado.
+
+> forma-brasileira@0.1.0 seed
+> tsx scripts/seed.ts
+
+Seed determinístico de 100.000 pedidos concluído.
+
+> forma-brasileira@0.1.0 verify:seed
+> tsx scripts/verify-seed.ts
+
+{"orders":100000,"items":100000}
+ orders | items  
+--------+--------
+ 100000 | 100000
+(1 row)
+
+OK

@@ -7,105 +7,109 @@
 #2 transferring dockerfile: 204B done
 #2 DONE 0.0s
 
-#3 [internal] load metadata for docker.io/library/node:24-bookworm-slim
-#3 DONE 0.5s
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
 
-#4 [internal] load .dockerignore
-#4 transferring context: 119B done
-#4 DONE 0.0s
+#4 [internal] load metadata for docker.io/library/node:24-bookworm-slim
+#4 DONE 0.7s
 
-#5 [1/6] FROM docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
-#5 resolve docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.1s done
-#5 DONE 0.1s
+#5 [internal] load .dockerignore
+#5 transferring context: 119B done
+#5 DONE 0.0s
 
-#6 [internal] load build context
-#6 transferring context: 189.42kB 0.0s done
+#6 [1/6] FROM docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
+#6 resolve docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.0s done
 #6 DONE 0.0s
 
-#7 [2/6] WORKDIR /app
-#7 CACHED
+#7 [internal] load build context
+#7 transferring context: 285.52kB 0.1s done
+#7 DONE 0.1s
 
-#8 [3/6] COPY package*.json ./
-#8 DONE 0.1s
+#8 [2/6] WORKDIR /app
+#8 CACHED
 
-#9 [4/6] RUN npm ci
-#9 1.825 npm warn deprecated node-abort-controller@3.1.1: This package is no longer needed on supported Node.js versions. Node.js 16+ includes AbortController and AbortSignal as built-in globals. All Node.js versions requiring this polyfill are end-of-life. Use the built-in globals instead.
-#9 2.241 npm warn deprecated prom-client@15.1.3: prom-client has been replaced by @prometheus-io/client
-#9 39.67 npm warn deprecated @opentelemetry/sdk-trace-base@2.8.0: Use @opentelemetry/sdk-trace package
-#9 39.68 npm warn deprecated @opentelemetry/sdk-trace-base@2.8.0: Use @opentelemetry/sdk-trace package
-#9 42.17 
-#9 42.17 added 292 packages, and audited 293 packages in 42s
-#9 42.17 
-#9 42.17 72 packages are looking for funding
-#9 42.17   run `npm fund` for details
-#9 42.29 
-#9 42.29 10 moderate severity vulnerabilities
-#9 42.29 
-#9 42.29 To address all issues (including breaking changes), run:
-#9 42.29   npm audit fix --force
-#9 42.29 
-#9 42.29 Run `npm audit` for details.
-#9 42.29 npm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:
-#9 42.29 npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
-#9 42.29 npm warn install-scripts   msgpackr-extract@3.0.7 (install: node-gyp-build-optional-packages)
-#9 42.29 npm warn install-scripts
-#9 42.29 npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
-#9 42.29 npm notice
-#9 42.29 npm notice New major version of npm available! 11.19.1 -> 12.2.2
-#9 42.29 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
-#9 42.29 npm notice To update run: npm install -g npm@12.2.2
-#9 42.29 npm notice
-#9 DONE 42.7s
+#9 [3/6] COPY package*.json ./
+#9 DONE 0.1s
 
-#10 [5/6] COPY . .
-#10 DONE 0.3s
+#10 [4/6] RUN npm ci
+#10 1.715 npm warn deprecated node-abort-controller@3.1.1: This package is no longer needed on supported Node.js versions. Node.js 16+ includes AbortController and AbortSignal as built-in globals. All Node.js versions requiring this polyfill are end-of-life. Use the built-in globals instead.
+#10 2.098 npm warn deprecated prom-client@15.1.3: prom-client has been replaced by @prometheus-io/client
+#10 36.74 npm warn deprecated @opentelemetry/sdk-trace-base@2.8.0: Use @opentelemetry/sdk-trace package
+#10 36.75 npm warn deprecated @opentelemetry/sdk-trace-base@2.8.0: Use @opentelemetry/sdk-trace package
+#10 38.82 
+#10 38.82 added 293 packages, and audited 294 packages in 38s
+#10 38.82 
+#10 38.82 73 packages are looking for funding
+#10 38.82   run `npm fund` for details
+#10 38.92 
+#10 38.92 10 moderate severity vulnerabilities
+#10 38.92 
+#10 38.92 To address all issues (including breaking changes), run:
+#10 38.92   npm audit fix --force
+#10 38.92 
+#10 38.92 Run `npm audit` for details.
+#10 38.92 npm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:
+#10 38.92 npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+#10 38.92 npm warn install-scripts   msgpackr-extract@3.0.7 (install: node-gyp-build-optional-packages)
+#10 38.92 npm warn install-scripts
+#10 38.92 npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+#10 38.92 npm notice
+#10 38.92 npm notice New major version of npm available! 11.19.1 -> 12.2.2
+#10 38.92 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+#10 38.92 npm notice To update run: npm install -g npm@12.2.2
+#10 38.92 npm notice
+#10 DONE 39.2s
 
-#11 [6/6] RUN npm run build
-#11 0.386 
-#11 0.386 > forma-brasileira@0.1.0 build
-#11 0.386 > vite build web --outDir ../dist/web
-#11 0.386 
-#11 0.517 vite v8.3.8 building client environment for production...
-#11 0.530 transforming...
-#11 0.659 ✓ 318 modules transformed.
-#11 0.686 
-#11 0.686 (!) outDir /app/dist/web is not inside project root and will not be emptied.
-#11 0.686 Use --emptyOutDir to override.
-#11 0.686 
-#11 0.743 rendering chunks...
-#11 0.811 computing gzip size...
-#11 0.816 dist/web/index.html                       4.79 kB │ gzip:   2.05 kB
-#11 0.816 dist/web/assets/index-BiEp4lUk.css        7.41 kB │ gzip:   2.39 kB
-#11 0.816 dist/web/assets/index-G9QGeotb.js        80.39 kB │ gzip:  29.16 kB
-#11 0.816 dist/web/assets/three-view-Cbjg1UUL.js  533.53 kB │ gzip: 132.10 kB
-#11 0.816 
-#11 0.817 [plugin builtin:vite-reporter] 
-#11 0.817 (!) Some chunks are larger than 500 kB after minification. Consider:
-#11 0.817 - Using dynamic import() to code-split the application
-#11 0.817 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
-#11 0.817 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-#11 0.817 ✓ built in 300ms
-#11 DONE 1.0s
+#11 [5/6] COPY . .
+#11 DONE 0.3s
 
-#12 exporting to image
-#12 exporting layers
-#12 exporting layers 9.7s done
-#12 exporting manifest sha256:dfccabcf5321416cda2f33b1901fa925857913bd3bce81b01757b9bd6871e6f6 0.0s done
-#12 exporting config sha256:a3428b4d84f569a69a65254a209af04486c38096ec6d233e180186fe0928e433 0.0s done
-#12 exporting attestation manifest sha256:2ae332f1c3038da3be1bcb1ecebb697636b0169f342b7810032618056ff864bf 0.0s done
-#12 exporting manifest list sha256:94a0512b4e64a447ef4845a51e03266cd3f1aacab5de3709c5e0a324af287335
-#12 exporting manifest list sha256:94a0512b4e64a447ef4845a51e03266cd3f1aacab5de3709c5e0a324af287335 0.0s done
-#12 naming to docker.io/library/forma-brasileira-app:latest done
-#12 unpacking to docker.io/library/forma-brasileira-app:latest
-#12 unpacking to docker.io/library/forma-brasileira-app:latest 6.1s done
-#12 DONE 16.0s
+#12 [6/6] RUN npm run build
+#12 0.416 
+#12 0.416 > forma-brasileira@0.1.0 build
+#12 0.416 > vite build web --outDir ../dist/web
+#12 0.416 
+#12 0.536 vite v8.3.8 building client environment for production...
+#12 0.547 transforming...
+#12 0.656 ✓ 318 modules transformed.
+#12 0.683 
+#12 0.683 (!) outDir /app/dist/web is not inside project root and will not be emptied.
+#12 0.683 Use --emptyOutDir to override.
+#12 0.683 
+#12 0.732 rendering chunks...
+#12 0.791 computing gzip size...
+#12 0.798 dist/web/index.html                       6.13 kB │ gzip:   2.22 kB
+#12 0.798 dist/web/assets/index-BHFWHG_s.css        7.42 kB │ gzip:   2.39 kB
+#12 0.798 dist/web/assets/index-755oHzRC.js        80.77 kB │ gzip:  29.28 kB
+#12 0.798 dist/web/assets/three-view-Cbjg1UUL.js  533.53 kB │ gzip: 132.10 kB
+#12 0.798 
+#12 0.799 [plugin builtin:vite-reporter] 
+#12 0.799 (!) Some chunks are larger than 500 kB after minification. Consider:
+#12 0.799 - Using dynamic import() to code-split the application
+#12 0.799 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#12 0.799 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#12 0.799 ✓ built in 262ms
+#12 DONE 0.9s
 
-#13 resolving provenance for metadata file
-#13 DONE 0.0s
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 8.8s done
+#13 exporting manifest sha256:d2d02107cf9ca83f878ebd5f30c210292303d28c439363ee6a2a61a8c61b31df 0.0s done
+#13 exporting config sha256:b0f7811f453bfe6518f02915723abea50daa858eca88ec6e475d353e15b3c4dd 0.0s done
+#13 exporting attestation manifest sha256:5b7d52cceb1e3be91dce2fa36d5ee4c41c3c87eaf147276f90cdcf6e0c37b713
+#13 exporting attestation manifest sha256:5b7d52cceb1e3be91dce2fa36d5ee4c41c3c87eaf147276f90cdcf6e0c37b713 0.1s done
+#13 exporting manifest list sha256:48d8204b67e155f5f7edeb7e6f567eb0f0ad35616fac9f1a7f8dd4770524aa94 0.1s done
+#13 naming to docker.io/library/forma-brasileira-app:latest
+#13 naming to docker.io/library/forma-brasileira-app:latest done
+#13 unpacking to docker.io/library/forma-brasileira-app:latest
+#13 unpacking to docker.io/library/forma-brasileira-app:latest 5.6s done
+#13 DONE 14.6s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
  Image forma-brasileira-app Built 
+ Container forma-brasileira-jaeger-1 Running 
  Container forma-brasileira-postgres-1 Running 
  Container forma-brasileira-redis-1 Running 
- Container forma-brasileira-jaeger-1 Running 
  Container forma-brasileira-app-1 Recreate 
  Container forma-brasileira-app-1 Recreated 
  Container forma-brasileira-postgres-1 Waiting 
@@ -114,3 +118,11 @@
  Container forma-brasileira-postgres-1 Healthy 
  Container forma-brasileira-app-1 Starting 
  Container forma-brasileira-app-1 Started 
+ Container forma-brasileira-redis-1 Waiting 
+ Container forma-brasileira-jaeger-1 Waiting 
+ Container forma-brasileira-app-1 Waiting 
+ Container forma-brasileira-postgres-1 Waiting 
+ Container forma-brasileira-redis-1 Healthy 
+ Container forma-brasileira-postgres-1 Healthy 
+ Container forma-brasileira-jaeger-1 Healthy 
+ Container forma-brasileira-app-1 Healthy 

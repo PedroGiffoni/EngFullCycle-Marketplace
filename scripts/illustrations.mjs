@@ -1,8 +1,15 @@
-import {writeFile} from 'node:fs/promises';
-const shapes={
- luminaria:'<ellipse cx="350" cy="559" rx="105" ry="18" fill="#6d5943"/><path d="M252 539 Q350 515 448 539 L455 557 Q350 580 245 557Z" fill="#987550"/><rect x="344" y="293" width="12" height="248" fill="#36382f"/><path d="M350 166 Q300 170 211 305 Q350 343 489 305 Q401 170 350 166Z" fill="url(#clay)"/><ellipse cx="350" cy="305" rx="139" ry="26" fill="#632d20"/><ellipse cx="350" cy="307" rx="128" ry="18" fill="#f0dbc0"/>',
- vaso:'<path d="M303 164 L397 164 L393 247 Q494 305 461 465 Q448 550 350 550 Q252 550 239 465 Q206 305 307 247Z" fill="url(#clay)"/><ellipse cx="350" cy="164" rx="47" ry="12" fill="#744633"/>',
- banco:'<path d="M219 338 L242 551 L263 551 L268 344 M432 344 L437 551 L458 551 L481 338" fill="#8f6b46"/><path d="M228 348 L215 514 L232 514 L251 348 M451 348 L468 514 L485 514 L472 348" fill="#6e5036"/><path d="M194 295 Q350 235 506 295 L506 336 Q350 389 194 336Z" fill="#a58259"/><ellipse cx="350" cy="295" rx="156" ry="50" fill="#bd976c"/>',
- bandeja:'<path d="M165 340 L410 274 L542 375 L299 460Z" fill="#99724b"/><path d="M165 319 L410 253 L542 354 L299 439Z" fill="#bc976c"/><path d="M186 322 L407 266 L518 352 L300 422Z" fill="#d2b28a"/>'
+import { writeFile } from "node:fs/promises";
+const shapes = {
+  luminaria:
+    '<ellipse cx="350" cy="559" rx="105" ry="18" fill="#6d5943"/><path d="M252 539 Q350 515 448 539 L455 557 Q350 580 245 557Z" fill="#987550"/><rect x="344" y="293" width="12" height="248" fill="#36382f"/><path d="M350 166 Q300 170 211 305 Q350 343 489 305 Q401 170 350 166Z" fill="url(#clay)"/><ellipse cx="350" cy="305" rx="139" ry="26" fill="#632d20"/><ellipse cx="350" cy="307" rx="128" ry="18" fill="#f0dbc0"/>',
+  vaso: '<path d="M303 164 L397 164 L393 247 Q494 305 461 465 Q448 550 350 550 Q252 550 239 465 Q206 305 307 247Z" fill="url(#clay)"/><ellipse cx="350" cy="164" rx="47" ry="12" fill="#744633"/>',
+  banco:
+    '<path d="M219 338 L242 551 L263 551 L268 344 M432 344 L437 551 L458 551 L481 338" fill="#8f6b46"/><path d="M228 348 L215 514 L232 514 L251 348 M451 348 L468 514 L485 514 L472 348" fill="#6e5036"/><path d="M194 295 Q350 235 506 295 L506 336 Q350 389 194 336Z" fill="#a58259"/><ellipse cx="350" cy="295" rx="156" ry="50" fill="#bd976c"/>',
+  bandeja:
+    '<path d="M165 340 L410 274 L542 375 L299 460Z" fill="#99724b"/><path d="M165 319 L410 253 L542 354 L299 439Z" fill="#bc976c"/><path d="M186 322 L407 266 L518 352 L300 422Z" fill="#d2b28a"/>',
 };
-for(const [name,shape] of Object.entries(shapes))await writeFile(`web/public/images/${name}.svg`,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700"><defs><linearGradient id="clay"><stop stop-color="#b47555"/><stop offset="1" stop-color="#803e2c"/></linearGradient><radialGradient id="shadow"><stop stop-color="#555044" stop-opacity=".2"/><stop offset="1" stop-color="#555044" stop-opacity="0"/></radialGradient></defs><ellipse cx="370" cy="565" rx="220" ry="36" fill="url(#shadow)"/>${shape}</svg>`);
+for (const [name, shape] of Object.entries(shapes))
+  await writeFile(
+    `web/public/images/${name}.svg`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700"><defs><linearGradient id="clay"><stop stop-color="#b47555"/><stop offset="1" stop-color="#803e2c"/></linearGradient><radialGradient id="shadow"><stop stop-color="#555044" stop-opacity=".2"/><stop offset="1" stop-color="#555044" stop-opacity="0"/></radialGradient></defs><ellipse cx="370" cy="565" rx="220" ry="36" fill="url(#shadow)"/>${shape}</svg>`,
+  );

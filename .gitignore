@@ -9,3 +9,4 @@ playwright-report/
 *.log
 docs/evidencias/*-raw.json
 docs/evidencias/docker-info.json
+.verification/

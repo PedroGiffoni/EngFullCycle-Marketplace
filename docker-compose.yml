@@ -23,7 +23,11 @@ services:
       retries: 30
   jaeger:
     image: jaegertracing/all-in-one:1.76.0
-    ports: ["127.0.0.1:${JAEGER_PORT:-16686}:16686", "127.0.0.1:${OTLP_PORT:-4318}:4318"]
+    ports:
+      [
+        "127.0.0.1:${JAEGER_PORT:-16686}:16686",
+        "127.0.0.1:${OTLP_PORT:-4318}:4318",
+      ]
     environment:
       COLLECTOR_OTLP_ENABLED: "true"
   app:
@@ -37,11 +41,17 @@ services:
       CATALOG_CACHE_TTL: 30
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318/v1/traces
     depends_on:
-      postgres: {condition: service_healthy}
-      redis: {condition: service_healthy}
-      jaeger: {condition: service_started}
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      jaeger: { condition: service_started }
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/ready').then(r=>{if(!r.ok)process.exit(1)})"]
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:3000/ready').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
       interval: 5s
       timeout: 3s
       retries: 30
@@ -55,4 +65,3 @@ services:
     entrypoint: ["k6"]
 volumes:
   pgdata:
-

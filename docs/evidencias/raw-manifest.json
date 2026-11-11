@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/evidencias/baseline-raw.json.gz",
+    "uncompressedSha256": "ec1d5ab344995a54c25e39798adbce0e929e52f8e9ec4abb7f5c4600302fe215"
+  },
+  {
+    "path": "docs/evidencias/controlled-after-raw.json.gz",
+    "uncompressedSha256": "6d96216a90b10d2aee031e7f0ae22cb2412135c6d156bea4cc8275b58cf90e33"
+  },
+  {
+    "path": "docs/evidencias/controlled-before-raw.json.gz",
+    "uncompressedSha256": "ed24707542cbe2e01629f82a2228843acb3b895c6bbbd0abb2130c19dda72415"
+  }
+]

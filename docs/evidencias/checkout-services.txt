@@ -1,0 +1,5 @@
+NAME                        IMAGE                             COMMAND                  SERVICE    CREATED         STATUS                   PORTS
+forma-checkout-app-1        forma-checkout-app                "docker-entrypoint.s…"   app        3 minutes ago   Up 3 minutes (healthy)   127.0.0.1:3001->3000/tcp
+forma-checkout-jaeger-1     jaegertracing/all-in-one:1.76.0   "/go/bin/all-in-one-…"   jaeger     3 minutes ago   Up 3 minutes             127.0.0.1:4319->4318/tcp, 127.0.0.1:16687->16686/tcp
+forma-checkout-postgres-1   postgres:17-alpine                "docker-entrypoint.s…"   postgres   3 minutes ago   Up 3 minutes (healthy)   127.0.0.1:5433->5432/tcp
+forma-checkout-redis-1      redis:7-alpine                    "docker-entrypoint.s…"   redis      3 minutes ago   Up 3 minutes (healthy)   127.0.0.1:6380->6379/tcp

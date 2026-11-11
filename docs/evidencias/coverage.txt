@@ -9,11 +9,11 @@
 
  Test Files  3 passed (3)
       Tests  19 passed (19)
-   Start at  10:55:40
-   Duration  2.91s (import 72%, tests 21%, transform 5%, worker 2%)
+   Start at  13:09:24
+   Duration  4.44s (import 72%, tests 22%, transform 5%, worker 1%)
 
-    Isolate  3 workers spawned · ~140ms startup each (spawn + environment, per file)
-             at least ~280ms faster with isolate: false — reuses workers across files instead of one per file
+    Isolate  3 workers spawned · ~185ms startup each (spawn + environment, per file)
+             at least ~369ms faster with isolate: false — reuses workers across files instead of one per file
 
  % Coverage report from v8
 -------------------|---------|----------|---------|---------|-------------------
@@ -21,12 +21,12 @@ File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 -------------------|---------|----------|---------|---------|-------------------
 All files          |     100 |    91.22 |     100 |     100 |                   
  src               |     100 |    79.16 |     100 |     100 |                   
-  app.ts           |     100 |    79.16 |     100 |     100 | 11-17             
+  app.ts           |     100 |    79.16 |     100 |     100 | 23-45,52,73-78    
 -------------------|---------|----------|---------|---------|-------------------
 
 =============================== Coverage summary ===============================
 Statements   : 100% ( 118/118 )
 Branches     : 91.22% ( 52/57 )
 Functions    : 100% ( 31/31 )
-Lines        : 100% ( 57/57 )
+Lines        : 100% ( 105/105 )
 ================================================================================

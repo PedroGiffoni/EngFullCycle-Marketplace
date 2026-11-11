@@ -1,0 +1,20 @@
+[
+  {
+    "operation": "catalog",
+    "before": 1.406749,
+    "after": 1.450427,
+    "deltaPercent": 3.1048893583716763
+  },
+  {
+    "operation": "order",
+    "before": 2.16427,
+    "after": 2.08656425,
+    "deltaPercent": -3.5903907553124226
+  },
+  {
+    "operation": "create",
+    "before": 9.316037,
+    "after": 7.61208475,
+    "deltaPercent": -18.290526862441613
+  }
+]

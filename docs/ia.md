@@ -22,4 +22,8 @@ A IA gerou código, testes, contratos, diagramas e documentação; não substitu
 - Build Linux encontrou dependências opcionais ausentes no lockfile gerado em Windows; entradas explícitas foram adicionadas para `npm ci` reproduzível.
 - Execução encontrou cliente `ioredis` opcional ausente no BullMQ atual; foi instalado.
 
+## Continuação autorizada
+
+Pedido: “Vamos seguir e comece a fazer comiits. Eu ja criei o projeto no github com nomeengenharia full cycle - marketplace”. O conector localizou e confirmou `PedroGiffoni/EngFullCycle-Marketplace`, vazio; primeiro README foi criado pelo conector. Depois do horário de liberação do limite da revisão automática, Git local foi inicializado e vinculado ao remoto, preservando arquivos. Commit da fatia funcional publicado. Nome e organização confirmados pelo usuário: “Individual — Pedro Toni Melo Giffoni”.
+
 Ver `docs/desempenho.md` para hipótese, experimento e resultados sem transformar hipótese em medição.
