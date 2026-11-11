@@ -9,7 +9,11 @@ export function paymentQueue(gateway: PaymentGateway) {
   const connection = {
     host: url.hostname,
     port: Number(url.port || 6379),
-    password: url.password || undefined,
+    username: url.username ? decodeURIComponent(url.username) : undefined,
+    password: url.password ? decodeURIComponent(url.password) : undefined,
+    ...(url.protocol === "rediss:"
+      ? { tls: { servername: url.hostname } }
+      : {}),
     maxRetriesPerRequest: null,
   };
   const queue = new Queue<PaymentEvent>("payments", { connection });

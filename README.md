@@ -140,6 +140,8 @@ Saídas e capturas reais: [docs/evidencias](docs/evidencias). [Relatório de des
 
 ## Publicação e limites
 
+A configuração de demonstração em Vercel + Render está em [docs/publicacao.md](docs/publicacao.md) e [render.yaml](render.yaml). URLs públicas só serão anunciadas após o deploy e a compra verificados.
+
 Deploy escolhido: recriação de um único monólito com Compose e verificação de prontidão. Instruções, flag, SLO e rollback em [operação](docs/operacao.md). Serviços publicados apenas em loopback. Antes de hospedagem pública: autenticação, política de acesso, gestão de segredos, gateway real, durabilidade/recuperação da fila e revisão dos achados SCA. Não foi publicado serviço público.
 
 O app não guarda sacola entre recargas, não faz reserva de estoque e usa fontes com fallback local. Redis indisponível permite catálogo via banco; pagamentos dependem da fila. Se Redis perder eventos, reenvie pagamento pendente. Sem licença de distribuição definida; não presumir licença open source.

@@ -15,7 +15,10 @@ export const provider = new BasicTracerProvider({
     "service.name": "forma-brasileira",
     "deployment.environment.name": process.env.APP_ENV ?? "development",
   }),
-  spanProcessors: [new SimpleSpanProcessor(exporter)],
+  spanProcessors:
+    process.env.OTEL_TRACES_EXPORTER === "none"
+      ? []
+      : [new SimpleSpanProcessor(exporter)],
 });
 trace.setGlobalTracerProvider(provider);
 export const tracer = trace.getTracer("forma-brasileira");

@@ -10,9 +10,19 @@ import { OrderRepository } from "./modules/orders/repository.js";
 import { SimulatedPayment } from "./modules/payments/simulated.js";
 import { buildApp } from "./app.js";
 import { migrate } from "../scripts/migrate.js";
-import { seedProducts } from "../scripts/seed.js";
+import { seedProducts, seedOrders } from "../scripts/seed.js";
 await migrate();
 await seedProducts();
+if (process.env.SEED_DEMO_ORDERS === "true") {
+  await seedOrders();
+  console.log(
+    JSON.stringify({
+      level: "info",
+      component: "seed",
+      message: "100000 pedidos demonstrativos preparados sem duplicação.",
+    }),
+  );
+}
 const redis = createClient({
   url: process.env.REDIS_URL ?? "redis://localhost:6379",
   disableOfflineQueue: true,

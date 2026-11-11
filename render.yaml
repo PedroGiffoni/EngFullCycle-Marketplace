@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: forma-brasileira-api
+    runtime: docker
+    region: virginia
+    plan: free
+    branch: main
+    healthCheckPath: /ready
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: APP_ENV
+        value: demonstration
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: forma-brasileira-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: forma-brasileira-redis
+          type: keyvalue
+          property: connectionString
+      - key: CATALOG_CACHE_ENABLED
+        value: "true"
+      - key: CATALOG_CACHE_TTL
+        value: "30"
+      - key: OTEL_TRACES_EXPORTER
+        value: none
+      - key: SEED_DEMO_ORDERS
+        value: "true"
+  - type: keyvalue
+    name: forma-brasileira-redis
+    region: virginia
+    plan: free
+    ipAllowList: []
+    maxmemoryPolicy: noeviction
+    persistenceMode: off
+databases:
+  - name: forma-brasileira-db
+    region: virginia
+    plan: free
+    databaseName: forma
+    postgresMajorVersion: "17"
+    ipAllowList: []

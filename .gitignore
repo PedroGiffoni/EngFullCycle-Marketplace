@@ -10,3 +10,4 @@ playwright-report/
 docs/evidencias/*-raw.json
 docs/evidencias/docker-info.json
 .verification/
+.vercel/

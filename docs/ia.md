@@ -1,5 +1,9 @@
 # Uso de IA
 
+## Publicação solicitada
+
+Pedido adicional: “Vamos subir pra vercel e render pra facilitar vuzializacao”. Plano: Vercel para assets e proxy de API, Render para monólito, PostgreSQL e Redis, reaproveitando a aplicação. Skills de deploy de ambas plataformas lidas e referências oficiais atuais consultadas. Workspace Render exige confirmação explícita do conector. A revisão automática rejeitou remover SSO do projeto Vercel sem autorização específica; a mudança ficou pendente de resposta do usuário. Node 24 configurado independentemente.
+
 ## Prompt determinante recebido em 11/11/2026
 
 > Leia as nove skills em .agents/skills/ e aplique-as ao Projeto A do curso Full Cycle. Comece pelo inventário com planejar-marketplace. Reaproveite minha stack e as entregas existentes. Construa uma fatia funcional de catálogo, pedido e pagamento de objetos de design brasileiro, aplicando direcao-de-marca antes de desenhar as telas. Integre motion-interface ao fluxo inteiro e vitrine-three à página de uma peça. Alimente a vitrine pela API real. Execute as etapas de contratos, operação, medição e entrega. Em cada etapa indique como reproduzir o resultado e o que preciso saber defender. Registre os prompts relevantes em docs/ia.md. Use somente evidências reais para CI, testes e desempenho. Informe impedimentos e avance nas etapas independentes.

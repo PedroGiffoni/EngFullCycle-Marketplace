@@ -1,0 +1,8 @@
+.agents
+.verification
+.git
+.env*
+coverage
+test-results
+docs/evidencias
+node_modules

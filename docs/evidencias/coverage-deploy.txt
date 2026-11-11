@@ -1,0 +1,32 @@
+
+> forma-brasileira@0.1.0 coverage
+> vitest run --coverage
+
+
+ RUN  v5.1.0 C:/Users/Pedro/Desktop/EngFullCycle
+      Coverage enabled with v8
+
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  13:37:57
+   Duration  2.54s (import 72%, tests 23%, transform 3%, worker 2%)
+
+    Isolate  3 workers spawned · ~127ms startup each (spawn + environment, per file)
+             at least ~253ms faster with isolate: false — reuses workers across files instead of one per file
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |    91.22 |     100 |     100 |                   
+ src               |     100 |    79.16 |     100 |     100 |                   
+  app.ts           |     100 |    79.16 |     100 |     100 | 23-45,52,73-78    
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 118/118 )
+Branches     : 91.22% ( 52/57 )
+Functions    : 100% ( 31/31 )
+Lines        : 100% ( 105/105 )
+================================================================================
