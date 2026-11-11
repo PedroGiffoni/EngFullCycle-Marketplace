@@ -1,0 +1,24 @@
+{
+  "homologHeader": [
+    "homologation"
+  ],
+  "rollbackSmoke": {
+    "capturedAt": "2026-11-11T16:15:29.358Z",
+    "orderId": "90f5b69c-778c-4b1e-812e-50a4816e47f9",
+    "traceId": "9b05d1a7ee5cd9912ae858bf33055fef",
+    "jaeger": "http://localhost:16686/trace/9b05d1a7ee5cd9912ae858bf33055fef",
+    "payment": "paid"
+  },
+  "devHeader": [
+    "development"
+  ],
+  "development": {
+    "status": "ok",
+    "environment": "development"
+  },
+  "homologation": {
+    "status": "ok",
+    "environment": "homologation"
+  },
+  "restoredImage": "sha256:dfdfcf12578d65493b361807f4fa5a4782b839d0acd4184d87c2b8caa9747798"
+}

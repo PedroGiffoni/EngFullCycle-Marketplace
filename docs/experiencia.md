@@ -17,13 +17,17 @@ Three carrega por import dinâmico ao ativar “Ver em 3D”. Geometrias própri
 
 ## Verificações executadas
 
-`npm run test:browser`: **10 passaram**, cinco em desktop 1440×1000 e cinco em celular 360×800, toque e movimento reduzido. Evidência bruta: `docs/evidencias/browser.json` e `browser-run.txt`. Verificados filtros repetidos, foco, Escape, retorno do foco ao card, quantidade, compra real, 3D tardio, teclado e liberação do canvas. WebGL foi desabilitado por instrumentação do navegador: fallback manteve imagem e compra. Import atrasado 500 ms mostrou “Carregando”. Testes de erro/vazio usam respostas deliberadamente instrumentadas, identificadas nos testes; compra principal usa API real.
+`npm run test:browser`: **14 passaram**, sete em desktop 1440×1000 e sete em celular 360×800, toque e movimento reduzido. Evidência bruta: `docs/evidencias/browser.json` e `browser-run.txt`. Verificados filtros repetidos, foco, Escape, retorno do foco ao card, quantidade, compra real, 3D tardio, teclado e liberação do canvas. WebGL foi desabilitado por instrumentação do navegador: fallback manteve imagem e compra. Import atrasado 500 ms mostrou “Carregando”. Testes de erro/vazio usam respostas deliberadamente instrumentadas, identificadas nos testes; compra principal usa API real.
 
 Capturas `catalogo-*`, `detalhe-*`, `carrinho-*`, `confirmacao-*`, `three-*` foram feitas por Playwright. Catálogo desktop e sacola 360 px também foram inspecionados visualmente. O teste de overflow confirmou largura sem rolagem horizontal. Contraste foi calculado a partir dos tokens realmente carregados e validado ≥4,5:1 para tinta/papel, secundário/papel, branco/argila e argila/papel. Anexos em browser.json preservam valores e custos 3D.
 
 Custos do 3D estão separados da carga HTTP: build original gerou chunk Three de 533,53 kB (132,10 kB gzip), baixado sob demanda. `performance.measure('product-3d-activation')` e Resource Timing foram anexados nos testes. Não converter tempo de ativação local em benchmark geral nem somar ao p95 da API. Não houve inspeção em aparelho físico, leitor de tela ou medição de FPS.
 
+Na última execução local, ativação 3D: 59,3 ms desktop e 56,8 ms celular emulado. Transferência efetiva: 533.835 bytes por ativação, sem gzip no servidor atual (o tamanho gzip do build é estimativa de compressão, não o transferido). Resource Timing e contraste em `browser-measurements.json`. Contrastes medidos: tinta/papel 14,26:1, secundário/papel 6,47:1, branco/argila 6,82:1 e argila/papel 6,31:1. A peça também abre por `/pecas/luminaria-arco`; voltar no navegador fecha detalhe e recupera o catálogo. Teste adicional de falha na quantidade confirmou subtotal preservado e repetição bem-sucedida. Durante pagamento, alterações da sacola ficam bloqueadas e a confirmação só anima depois de `paid`.
+
 ## Saber defender
 
 Por que identificação de produto fictício evita falsa procedência; alinhamento entre tokens e guia; movimento reduzido mantém feedback; foco e mensagens importam mais que animação; 202 não é pagamento confirmado; por que Three é tardio e precisa de fallback/dispose; limitação dos testes em emulação móvel.
+
+
 

@@ -7,92 +7,95 @@
 #2 transferring dockerfile: 204B done
 #2 DONE 0.0s
 
-#3 [internal] load metadata for docker.io/library/node:24-bookworm-slim
-#3 DONE 0.5s
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
 
-#4 [internal] load .dockerignore
-#4 transferring context: 119B done
-#4 DONE 0.0s
+#4 [internal] load metadata for docker.io/library/node:24-bookworm-slim
+#4 DONE 0.7s
 
-#5 [1/6] FROM docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
-#5 resolve docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.0s done
+#5 [internal] load .dockerignore
+#5 transferring context: 119B done
 #5 DONE 0.0s
 
-#6 [internal] load build context
-#6 transferring context: 21.06kB 0.0s done
+#6 [1/6] FROM docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
+#6 resolve docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.0s done
 #6 DONE 0.0s
 
-#7 [2/6] WORKDIR /app
-#7 CACHED
+#7 [internal] load build context
+#7 transferring context: 52.35kB 0.0s done
+#7 DONE 0.0s
 
 #8 [3/6] COPY package*.json ./
 #8 CACHED
 
-#9 [4/6] RUN npm ci
+#9 [2/6] WORKDIR /app
 #9 CACHED
 
-#10 [5/6] COPY . .
-#10 DONE 0.1s
+#10 [4/6] RUN npm ci
+#10 CACHED
 
-#11 [6/6] RUN npm run build
-#11 0.382 
-#11 0.382 > forma-brasileira@0.1.0 build
-#11 0.382 > vite build web --outDir ../dist/web
-#11 0.382 
-#11 0.506 vite v8.3.8 building client environment for production...
-#11 0.522 transforming...
-#11 0.639 ✓ 318 modules transformed.
-#11 0.662 
-#11 0.662 (!) outDir /app/dist/web is not inside project root and will not be emptied.
-#11 0.662 Use --emptyOutDir to override.
-#11 0.662 
-#11 0.709 rendering chunks...
-#11 0.749 computing gzip size...
-#11 0.754 dist/web/index.html                       6.13 kB │ gzip:   2.22 kB
-#11 0.754 dist/web/assets/index-BHFWHG_s.css        7.42 kB │ gzip:   2.39 kB
-#11 0.754 dist/web/assets/index-755oHzRC.js        80.77 kB │ gzip:  29.28 kB
-#11 0.754 dist/web/assets/three-view-Cbjg1UUL.js  533.53 kB │ gzip: 132.10 kB
-#11 0.754 
-#11 0.755 [plugin builtin:vite-reporter] 
-#11 0.755 (!) Some chunks are larger than 500 kB after minification. Consider:
-#11 0.755 - Using dynamic import() to code-split the application
-#11 0.755 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
-#11 0.755 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-#11 0.755 ✓ built in 248ms
-#11 DONE 0.9s
+#11 [5/6] COPY . .
+#11 DONE 0.1s
 
-#12 exporting to image
-#12 exporting layers
-#12 exporting layers 0.3s done
-#12 exporting manifest sha256:b20d2ca892f32460f9e14f027427afc0d42fdc179ecacd016d8b25b2ab75b94d 0.0s done
-#12 exporting config sha256:9e57525b972358998f8b9609bd5ae0a61179a1806a42acb59bf365c1dbba9639 0.0s done
-#12 exporting attestation manifest sha256:1bfd05de84530a93a063f98d5244e118ac84d690bb0e5c819679eb9aa0c1a8c3 0.0s done
-#12 exporting manifest list sha256:3286ef9738d0f32d3b465731141e6e47483926eadb03ca42f7f962bbbdd3dce1
-#12 exporting manifest list sha256:3286ef9738d0f32d3b465731141e6e47483926eadb03ca42f7f962bbbdd3dce1 0.0s done
-#12 naming to docker.io/library/forma-brasileira-app:latest done
-#12 unpacking to docker.io/library/forma-brasileira-app:latest
-#12 unpacking to docker.io/library/forma-brasileira-app:latest 0.2s done
-#12 DONE 0.6s
+#12 [6/6] RUN npm run build
+#12 0.366 
+#12 0.366 > forma-brasileira@0.1.0 build
+#12 0.366 > vite build web --outDir ../dist/web
+#12 0.366 
+#12 0.499 vite v8.3.8 building client environment for production...
+#12 0.514 transforming...
+#12 0.625 ✓ 318 modules transformed.
+#12 0.651 
+#12 0.651 (!) outDir /app/dist/web is not inside project root and will not be emptied.
+#12 0.651 Use --emptyOutDir to override.
+#12 0.651 
+#12 0.709 rendering chunks...
+#12 0.755 computing gzip size...
+#12 0.761 dist/web/index.html                       6.13 kB │ gzip:   2.22 kB
+#12 0.761 dist/web/assets/index-BHFWHG_s.css        7.42 kB │ gzip:   2.39 kB
+#12 0.761 dist/web/assets/index-hvezKa0P.js        81.24 kB │ gzip:  29.44 kB
+#12 0.761 dist/web/assets/three-view-Cbjg1UUL.js  533.53 kB │ gzip: 132.10 kB
+#12 0.761 
+#12 0.761 [plugin builtin:vite-reporter] 
+#12 0.761 (!) Some chunks are larger than 500 kB after minification. Consider:
+#12 0.761 - Using dynamic import() to code-split the application
+#12 0.761 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#12 0.761 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#12 0.762 ✓ built in 261ms
+#12 DONE 0.8s
 
-#13 resolving provenance for metadata file
-#13 DONE 0.0s
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.3s done
+#13 exporting manifest sha256:ac651d02dd7025fa5396887774d46724fc89102716f875654dded8eda434925a 0.0s done
+#13 exporting config sha256:d0d3bda3f859e44ea4559b89bcd9f79c10afc4de77a5f6924cc52b57ee6e6f19 0.0s done
+#13 exporting attestation manifest sha256:270b7b2ddf178446070acdd0dfdd2d1c8257f97aeb2ae80e647e352baace24d2 0.0s done
+#13 exporting manifest list sha256:3402bd18b4c8c27ae3e68a6ee59191a20c8dd6ae4d3cb5237a77358babb35d64
+#13 exporting manifest list sha256:3402bd18b4c8c27ae3e68a6ee59191a20c8dd6ae4d3cb5237a77358babb35d64 0.0s done
+#13 naming to docker.io/library/forma-brasileira-app:latest done
+#13 unpacking to docker.io/library/forma-brasileira-app:latest
+#13 unpacking to docker.io/library/forma-brasileira-app:latest 0.2s done
+#13 DONE 0.6s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
  Image forma-brasileira-app Built 
+ Container forma-brasileira-redis-1 Running 
  Container forma-brasileira-jaeger-1 Running 
  Container forma-brasileira-postgres-1 Running 
- Container forma-brasileira-redis-1 Running 
  Container forma-brasileira-app-1 Recreate 
  Container forma-brasileira-app-1 Recreated 
  Container forma-brasileira-postgres-1 Waiting 
  Container forma-brasileira-redis-1 Waiting 
- Container forma-brasileira-postgres-1 Healthy 
  Container forma-brasileira-redis-1 Healthy 
+ Container forma-brasileira-postgres-1 Healthy 
  Container forma-brasileira-app-1 Starting 
  Container forma-brasileira-app-1 Started 
+ Container forma-brasileira-redis-1 Waiting 
  Container forma-brasileira-jaeger-1 Waiting 
  Container forma-brasileira-app-1 Waiting 
  Container forma-brasileira-postgres-1 Waiting 
- Container forma-brasileira-redis-1 Waiting 
  Container forma-brasileira-jaeger-1 Healthy 
- Container forma-brasileira-postgres-1 Healthy 
  Container forma-brasileira-redis-1 Healthy 
+ Container forma-brasileira-postgres-1 Healthy 
  Container forma-brasileira-app-1 Healthy 

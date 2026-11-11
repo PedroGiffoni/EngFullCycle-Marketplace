@@ -1,0 +1,26 @@
+[
+  {
+    "test": "3D tardio, teclado, retorno e liberação",
+    "project": "desktop",
+    "name": "custo-3d",
+    "data": "{\"activation\":[59.30000000074506],\"resources\":[{\"name\":\"http://localhost:3000/assets/three-view-Cbjg1UUL.js\",\"duration\":6.300000000745058,\"transferSize\":533835}]}"
+  },
+  {
+    "test": "3D tardio, teclado, retorno e liberação",
+    "project": "mobile-reduced",
+    "name": "custo-3d",
+    "data": "{\"activation\":[56.79999999701977],\"resources\":[{\"name\":\"http://localhost:3000/assets/three-view-Cbjg1UUL.js\",\"duration\":6.199999999254942,\"transferSize\":533835}]}"
+  },
+  {
+    "test": "contrastes reais de tokens",
+    "project": "desktop",
+    "name": "contraste",
+    "data": "{\"inkPaper\":14.255900259356375,\"mutedPaper\":6.469556900198476,\"whiteClay\":6.818652863307616,\"clayPaper\":6.313349556898936}"
+  },
+  {
+    "test": "contrastes reais de tokens",
+    "project": "mobile-reduced",
+    "name": "contraste",
+    "data": "{\"inkPaper\":14.255900259356375,\"mutedPaper\":6.469556900198476,\"whiteClay\":6.818652863307616,\"clayPaper\":6.313349556898936}"
+  }
+]

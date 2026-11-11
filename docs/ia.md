@@ -27,3 +27,9 @@ A IA gerou código, testes, contratos, diagramas e documentação; não substitu
 Pedido: “Vamos seguir e comece a fazer comiits. Eu ja criei o projeto no github com nomeengenharia full cycle - marketplace”. O conector localizou e confirmou `PedroGiffoni/EngFullCycle-Marketplace`, vazio; primeiro README foi criado pelo conector. Depois do horário de liberação do limite da revisão automática, Git local foi inicializado e vinculado ao remoto, preservando arquivos. Commit da fatia funcional publicado. Nome e organização confirmados pelo usuário: “Individual — Pedro Toni Melo Giffoni”.
 
 Ver `docs/desempenho.md` para hipótese, experimento e resultados sem transformar hipótese em medição.
+
+## Verificações adicionais efetivamente feitas
+
+Após autorização retomada: benchmark em banco descartável com volume restaurado a 100 mil pedidos em cada rodada, raw comprimido e piora de 3,10% no p95 do catálogo relatada sem alegar benefício. Checkout limpo de homologação subiu e testou. Parada real do Redis preservou catálogo, pagamento falhou sem confirmar e recuperou após retorno do serviço; isso motivou limite de espera da fila e bloqueio de edição de sacola pendente. Navegação de produto recebeu URL direta e histórico. Código formatado com Prettier para facilitar leitura e defesa.
+
+Primeira CI remota falhou no apt da instalação do navegador por DNS de security.ubuntu.com, archive.ubuntu.com e azure.archive.ubuntu.com, depois de lint, suítes, SCA, build e seed passarem. Mudança: runner ubuntu-24.04 com bibliotecas preinstaladas, instalação apenas do Chromium e limites de duração. Resultado remoto final é registrado em docs/entrega.md quando observado; testes locais não foram usados como substituto de CI verde.
