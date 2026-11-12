@@ -129,7 +129,7 @@ SCA bloqueia alto/crítico; achados moderados ficam documentados e precisam de a
 | Linha de base k6, 50 s / até 10 VUs | 11.241 requisições; 0% erros; p95 catálogo 1,56 ms |
 | Comparação cache antes/depois | Executada; p95 catálogo +3,10%, sem ganho comprovado |
 | Sacola de quatro peças antes/depois | INSERTs de itens 4→1; p95 10,27→9,27 ms nesta amostra; [raw e limites](docs/desempenho.md) |
-| CI remoto | [Verde na revisão 01030a9](https://github.com/PedroGiffoni/EngFullCycle-Marketplace/actions/runs/43074707301) |
+| CI remoto | [Verde na revisão c764bf1](https://github.com/PedroGiffoni/EngFullCycle-Marketplace/actions/runs/43214359370) |
 | Submissão Moodle | Texto preparado; não enviada |
 
 Saídas e capturas reais: [docs/evidencias](docs/evidencias). [Relatório de desempenho](docs/desempenho.md) distingue observações, hipóteses e pendências. Números locais não provam SLO de sete dias nem capacidade em produção.

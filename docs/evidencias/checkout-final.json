@@ -1,0 +1,16 @@
+{
+  "checkout": ".verification/revisao-final",
+  "seedRuns": 2,
+  "notes": "Resumo das saidas observadas; nao substitui os artefatos brutos da CI.",
+  "branchesCoverage": 87.71,
+  "revision": "c764bf1e06cf13e5b79d6a169ace4d67f48bf699",
+  "compose": "up --build -d --wait",
+  "image": "sha256:e8a50195daf580498fa38ad5694bd9a629fa5ea7fc17ea1bd81f7d1a9b84b8f9",
+  "testsPassed": 20,
+  "observedAt": "2026-11-12T12:06:20.5418564Z",
+  "linesCoverage": 100,
+  "syntheticOrdersEachRun": 100000,
+  "testFiles": 3,
+  "environment": "forma-homolog",
+  "syntheticItemsEachRun": 100000
+}
