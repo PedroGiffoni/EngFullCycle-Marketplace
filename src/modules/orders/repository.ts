@@ -26,11 +26,14 @@ export class OrderRepository implements Orders {
         "INSERT INTO orders.orders(id,status,total_cents) VALUES($1,$2,$3)",
         [order.id, order.status, order.totalCents],
       );
-      for (const item of items)
-        await db.query(
-          "INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents) VALUES($1,$2,$3,$4,$5)",
-          [order.id, item.productId, item.name, item.quantity, item.priceCents],
-        );
+      await db.query(
+        `INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents)
+         SELECT $1, item->>'productId', item->>'name',
+                (item->>'quantity')::int, (item->>'priceCents')::int
+         FROM jsonb_array_elements($2::jsonb) WITH ORDINALITY AS entry(item, position)
+         ORDER BY position`,
+        [order.id, JSON.stringify(items)],
+      );
     });
     return order;
   }

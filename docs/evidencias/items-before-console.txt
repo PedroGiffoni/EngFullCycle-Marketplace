@@ -1,0 +1,1 @@
+A captura de console foi interrompida pelo tratamento de stderr do Docker no Windows PowerShell. O k6 concluiu e gerou raw e summary completos; ver docs/desempenho.md. Este arquivo nao reconstrui uma saida de console inexistente.

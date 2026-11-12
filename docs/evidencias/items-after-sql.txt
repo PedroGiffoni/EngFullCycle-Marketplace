@@ -1,0 +1,1 @@
+2026-11-12 12:01:01.642 UTC [645] LOG:  execute <unnamed>: INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents)

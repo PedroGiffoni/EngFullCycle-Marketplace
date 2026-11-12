@@ -10,5 +10,13 @@
   {
     "path": "docs/evidencias/controlled-before-raw.json.gz",
     "uncompressedSha256": "ed24707542cbe2e01629f82a2228843acb3b895c6bbbd0abb2130c19dda72415"
+  },
+  {
+    "path": "docs/evidencias/items-after-raw.json.gz",
+    "uncompressedSha256": "ab8281983d27aad08f71955a09a04f64c2317a5c38158654ff52bf3b2e3d5380"
+  },
+  {
+    "path": "docs/evidencias/items-before-raw.json.gz",
+    "uncompressedSha256": "1a0c53747bab8f2a14b44741c018d463bdca5da630acf63e10da4eeb4d3a8ae6"
   }
 ]
