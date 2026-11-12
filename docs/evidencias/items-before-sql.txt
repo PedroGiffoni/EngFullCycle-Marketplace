@@ -1,0 +1,4 @@
+2026-11-12 11:59:16.914 UTC [344] LOG:  execute <unnamed>: INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents) VALUES($1,$2,$3,$4,$5)
+2026-11-12 11:59:16.915 UTC [344] LOG:  execute <unnamed>: INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents) VALUES($1,$2,$3,$4,$5)
+2026-11-12 11:59:16.916 UTC [344] LOG:  execute <unnamed>: INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents) VALUES($1,$2,$3,$4,$5)
+2026-11-12 11:59:16.916 UTC [344] LOG:  execute <unnamed>: INSERT INTO orders.items(order_id,product_id,name,quantity,price_cents) VALUES($1,$2,$3,$4,$5)

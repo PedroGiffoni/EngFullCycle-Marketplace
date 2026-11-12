@@ -1,0 +1,19 @@
+{
+  "before": {
+    "createSamples": 3772,
+    "createP95Ms": 10.267449649999998,
+    "httpErrors": 0,
+    "checksPassed": 1,
+    "requests": 7544,
+    "requestsPerSecond": 150.56275876872235
+  },
+  "after": {
+    "createSamples": 3781,
+    "createP95Ms": 9.273416,
+    "httpErrors": 0,
+    "checksPassed": 1,
+    "requests": 7562,
+    "requestsPerSecond": 151.03767585915824
+  },
+  "p95ChangePercent": -9.681407592780344
+}

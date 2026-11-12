@@ -19,6 +19,22 @@ it("persiste pedido e itens, preço autoritativo e estado", async () => {
   expect(order.totalCents).toBe(178000);
   expect(await orders.get(order.id)).toEqual(order);
 });
+it("persiste uma sacola completa em ordem com preços e quantidades distintos", async () => {
+  const products = await catalog.list();
+  const input = products.map((product, index) => ({
+    productId: product.id,
+    quantity: index + 1,
+  }));
+  const order = await orders.create(input);
+  expect(order.items).toHaveLength(4);
+  expect(order.totalCents).toBe(
+    products.reduce(
+      (sum, product, index) => sum + product.priceCents * (index + 1),
+      0,
+    ),
+  );
+  expect((await orders.get(order.id))?.items).toEqual(order.items);
+});
 it("rollback PostgreSQL desfaz pedido e itens diante de erro", async () => {
   const id = randomUUID();
   await expect(

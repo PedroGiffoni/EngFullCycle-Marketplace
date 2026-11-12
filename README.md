@@ -121,14 +121,15 @@ SCA bloqueia alto/crítico; achados moderados ficam documentados e precisam de a
 
 | Verificação local efetivamente executada | Resultado |
 |---|---|
-| Domínio + integração + contrato | 19 testes passaram |
+| Domínio + integração + contrato | 20 testes passaram |
 | Cobertura no escopo declarado | 100% linhas/statements/funções; 91,22% branches |
 | Navegador desktop e 360 px / movimento reduzido | 14 testes passaram |
 | Seed duas vezes e consulta SQL | 100.000 pedidos e 100.000 itens em ambas |
 | Compose, saúde e pagamento pela fila | Executados; trace real em Jaeger |
 | Linha de base k6, 50 s / até 10 VUs | 11.241 requisições; 0% erros; p95 catálogo 1,56 ms |
 | Comparação cache antes/depois | Executada; p95 catálogo +3,10%, sem ganho comprovado |
-| CI remoto | [Verde na revisão 9c215cc](https://github.com/PedroGiffoni/EngFullCycle-Marketplace/actions/runs/43056909115) |
+| Sacola de quatro peças antes/depois | INSERTs de itens 4→1; p95 10,27→9,27 ms nesta amostra; [raw e limites](docs/desempenho.md) |
+| CI remoto | [Verde na revisão c764bf1](https://github.com/PedroGiffoni/EngFullCycle-Marketplace/actions/runs/43214359370) |
 | Submissão Moodle | Texto preparado; não enviada |
 
 Saídas e capturas reais: [docs/evidencias](docs/evidencias). [Relatório de desempenho](docs/desempenho.md) distingue observações, hipóteses e pendências. Números locais não provam SLO de sete dias nem capacidade em produção.
@@ -164,6 +165,3 @@ O app não guarda sacola entre recargas, não faz reserva de estoque e usa fonte
 Estrutura: `src/modules` contém os três módulos; `src/platform` infraestrutura; `web` interface; `scripts` migração/seed/verificação; `tests` domínio/integração/contrato/browser; `load` k6. Para contribuir, rode os checks, preserve fronteiras e atualize documentação/evidências quando mudar comportamento.
 
 [Enunciado oficial do curso](https://henriquelopeslima.github.io/diglass/aulas/24-projeto-final.html): entrega até 13/11; apresentação opcional em 16/11 ou vídeo até 13/11. Confirmar ano com docente.
-
-
-

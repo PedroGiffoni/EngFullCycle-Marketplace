@@ -69,3 +69,33 @@ Reproduzir a experiência completa no ambiente próprio: `powershell -File scrip
 
 p95 não é média; thresholds por operação evitam esconder criação lenta no catálogo rápido; aumento de volume durante teste precisa ser controlado no comparativo; cache pode piorar um catálogo pequeno; unicidade garante efeito único apesar de entrega repetida; um número observado não comprova uma janela SLO ou melhoria causal.
 
+
+## Investigação de gravação de itens — 12/11/2026
+
+A criação era a operação mais lenta no primeiro perfil. A inspeção do Repository mostrou uma inserção sequencial por item, dentro da transação. Uma requisição real com as quatro peças distintas gerou **quatro INSERTs de itens**, confirmados no log PostgreSQL em `items-before-sql.txt`. Esse é um custo de round trips que cresce com o tamanho da sacola; não houve saturação nem violação da meta de 500 ms no perfil exercitado.
+
+Mudança aplicada: um único `INSERT ... SELECT` sobre `jsonb_array_elements`, com parâmetros, ordinality para preservar a ordem e a mesma transação de pedido/itens. O log `items-after-sql.txt` confirmou **um INSERT** para os quatro itens. Não houve alteração de preço, resposta HTTP, catálogo ou schema. O teste de integração da sacola completa confere preços, quantidades, total e ordem de leitura.
+
+Carga em `load/order-items.js`: catálogo seguido de POST com uma unidade de cada uma das quatro peças (total autoritativo 272.000 centavos); três estágios de 10/30/10 s, até dez VUs e pausa de 100 ms. Cache desligado nas duas rodadas. Banco isolado restaurado a exatamente 100.000 pedidos e 100.000 itens antes de cada fase (`items-*-seed.txt`). Mesmo host Docker, imagem base Node fixada pelo mesmo digest no build, dependências do lockfile e política sem aquecimento dedicado. Builds distintos registrados em `items-*-run.json`, junto do SHA-base e hash do Repository local: o experimento ocorreu na working tree de revisão baseada em 01030a9, antes do commit da otimização.
+
+| Indicador real | Antes: quatro inserções | Depois: uma inserção |
+|---|---:|---:|
+| p95 POST de quatro peças | 10,267450 ms | 9,273416 ms |
+| Amostras de POST | 3.772 | 3.781 |
+| Erros HTTP | 0% | 0% |
+| Checks funcionais aprovados | 100% | 100% |
+| Vazão total (GET + POST) | 150,56 req/s | 151,04 req/s |
+| Requisições totais | 7.544 | 7.562 |
+
+O p95 de criação caiu **9,68% nesta amostra**. A redução de quatro consultas de itens para uma foi observada diretamente; o ganho de latência não é uma garantia estatística ou de capacidade em produção. Houve uma rodada por versão, processos auxiliares no host e verificações locais durante parte da segunda execução; não houve isolamento de CPU, reinicialização de buffers ou intervalo de confiança. Repetições alternadas em host dedicado são necessárias para estimar o ganho com precisão. As metas foram atendidas antes e depois; a mudança reduz um custo identificado, sem alegar um gargalo de saturação inexistente.
+
+O resumo global do k6 combina GET e POST. Para evitar ocultar o POST, `scripts/summarize-items.mjs` extrai somente `http_req_duration` com a tag `operation=create-four` do raw e calcula p95 por interpolação linear. `items-comparison.json` guarda o cálculo; os resumos originais e raw gzip permanecem disponíveis, com SHA-256 em `raw-manifest.json`. Na primeira execução, o Windows PowerShell tratou stderr de progresso do Docker como erro depois de o k6 concluir: raw e resumo completos foram preservados, mas o console ficou vazio. O script foi corrigido para preservar console e conferir o exit code; a segunda execução terminou com código zero. A falha de captura não foi registrada como falha funcional de carga.
+
+### Reprodução desta investigação
+
+1. Em checkout da revisão anterior à otimização (`01030a9`), copiar os arquivos `load/order-items.js` e `scripts/benchmark-items.ps1` desta revisão; executar `powershell -NoProfile -File scripts/benchmark-items.ps1 -Phase before`. A única diferença funcional a comparar é o Repository de pedidos.
+2. Voltar à revisão com inserção em lote e executar `powershell -NoProfile -File scripts/benchmark-items.ps1 -Phase after`. Não rodar outros testes/cargas durante as medições de repetição. O script restaura somente o banco descartável nomeado; não aponta para Supabase.
+3. Executar `node scripts/summarize-items.mjs` e `node scripts/compress-evidence.mjs`. Conferir contagens, hashes, checks e erros antes de comparar os números. Não esperar os mesmos milissegundos em outro computador.
+4. Para inspecionar consultas, habilitar temporariamente `log_statement=all` exclusivamente no PostgreSQL descartável, recarregar a configuração, enviar um pedido de quatro peças e filtrar o log por `INSERT INTO orders.items`. Restaurar `log_statement` e recarregar a configuração antes da carga. Os dois arquivos SQL registram essa inspeção separada da amostra k6.
+
+Defender: custo de round trips versus execução SQL; por que parâmetros e transação permanecem necessários; preservação da ordem; diferença entre contagem de consultas comprovada e ganho de p95 sujeito a ruído. O resultado de cache anterior permanece inconclusivo e não é substituído por este experimento, que usa outro perfil de sacola.

@@ -1,0 +1,13 @@
+{
+    "image":  "sha256:b9d6356216f28a22bbdde659d5625b11a7ac5bd66157fdace7f9b7b9897a91e3",
+    "maxVUs":  10,
+    "stages":  "10s ramp / 30s hold / 10s down",
+    "initialItems":  100000,
+    "cache":  false,
+    "warmup":  "no dedicated warmup; ramp included",
+    "repositorySha256":  "738EA52763DCEFF19126914AD63AEA819E2D301F0FAC2429275330933E9D6D22",
+    "revision":  "01030a9c29593d79df0f8a97063e210162e6d95e",
+    "basket":  "four distinct catalog products, quantity one",
+    "initialOrders":  100000,
+    "timestamp":  "2026-11-12T11:57:40.4809640Z"
+}
