@@ -10,6 +10,12 @@
 
 **Online, sem login:** [abrir na Vercel](https://forma-brasileira.vercel.app) · [alternativa no Render](https://forma-brasileira-api-7fo6.onrender.com). API e Redis no Render, PostgreSQL no Supabase, em planos gratuitos. A API pode demorar a retomar na primeira visita. [Publicação e evidências](docs/publicacao.md).
 
+> ### ▶ Apresentação em vídeo
+>
+> **[Assistir à apresentação do Forma Brasileira no Google Drive](https://drive.google.com/file/d/18N6lN3YjuYAG6zDu7OzuQAfGOz7q9vfd/view?usp=sharing)**
+>
+> [Abrir guia HTML técnico](https://forma-brasileira.vercel.app/apresentacao.html) · [Baixar HTML para abrir offline](web/public/apresentacao.html)
+
 <!-- Screenshot real gerado pelo Playwright contra API + PostgreSQL + Redis. -->
 ![Captura real do catálogo; produtos exibidos são ilustrações de peças fictícias](docs/evidencias/catalogo-desktop.png)
 
@@ -143,6 +149,31 @@ Saídas e capturas reais: [docs/evidencias](docs/evidencias). [Relatório de des
 
 ## Publicação e limites
 
+### Observabilidade e interpretação das evidências
+
+Logs históricos reais, extraídos do contêiner local do marketplace, com campos operacionais preservados. Identificação da máquina e informações de rede foram omitidas. O print renderiza os registros para leitura; não simula um terminal. [Origem e hashes](docs/evidencias/apresentacao/logs-origem.json).
+
+![Print dos logs JSON reais com reqId, traceId, rota e status](docs/apresentacao/evidencias/logs.png)
+
+| Evidência | O que permite afirmar | Limite |
+|---|---|---|
+| Logs JSON | Catálogo 200, pedido 201, pagamento aceito 202 e consulta 200 registrados | Histórico local; HTTP 202 não comprova pagamento finalizado |
+| Métricas RED | Contadores por rota/status e histograma de duração expostos em `/metrics` | Snapshot não fornece taxa/s nem janela contínua |
+| Catálogo no snapshot | 18 leituras; média aproximada de 1,363 ms; 18/18 no bucket ≤300 ms | Não é p95 exato nem comprovação do SLO de sete dias |
+| Trace exportado | Requisição de pagamento e consumidor no mesmo trace | Outra amostra local; não é a mesma requisição dos logs acima |
+
+<details><summary>Prints reais de métricas, trace e resultados da CI</summary>
+
+As imagens abaixo renderizam fontes preservadas, sem reconstruir uma interface de monitoramento ou execução inexistente.
+
+![Snapshot real do expositor de métricas RED](docs/apresentacao/evidencias/red.png)
+![Spans reais exportados do Jaeger local](docs/apresentacao/evidencias/trace.png)
+![Extrato real dos logs da CI: 20 testes, cobertura e 14 testes de navegador](docs/apresentacao/evidencias/ci.png)
+
+</details>
+
+O [guia visual](https://forma-brasileira.vercel.app/apresentacao.html) mapeia cada requisito do enunciado à implementação, prova, reprodução e limite. A avaliação de cache e inserção em lote permanece em [desempenho](docs/desempenho.md), incluindo o resultado inconclusivo do cache.
+
 A demonstração Vercel + Render + Supabase está publicada: smoke público de compra aprovado e 14 testes de navegador passaram em desktop/celular. O pagamento é inteiramente simulado. [Configuração e evidências](docs/publicacao.md) · [render.yaml](render.yaml).
 
 Localmente, deploy por Compose com serviços em loopback. Na demonstração pública, Vercel serve a interface e Render executa o monólito com prontidão HTTP, PostgreSQL Supabase com papel restrito, RLS e TLS validado. Instruções, flag, SLO e rollback em [operação](docs/operacao.md). Uso comercial exigiria autenticação, gateway real, durabilidade da fila e revisão dos achados SCA.
@@ -161,6 +192,8 @@ O app não guarda sacola entre recargas, não faz reserva de estoque e usa fonte
 | [Entrega e defesa](docs/entrega.md) | Matriz final, Moodle, roteiro de dez minutos |
 | [Contribuições](CONTRIBUTORS.md) | Autoria e vínculos verificáveis |
 | [Uso de IA](docs/ia.md) | Prompts e decisões assistidas |
+| [Vídeo de apresentação](https://drive.google.com/file/d/18N6lN3YjuYAG6zDu7OzuQAfGOz7q9vfd/view?usp=sharing) | Demonstração e apresentação do projeto no Google Drive |
+| [Guia HTML técnico](https://forma-brasileira.vercel.app/apresentacao.html) | Motion, capturas reais, código e evidências; [arquivo offline](web/public/apresentacao.html) |
 
 Estrutura: `src/modules` contém os três módulos; `src/platform` infraestrutura; `web` interface; `scripts` migração/seed/verificação; `tests` domínio/integração/contrato/browser; `load` k6. Para contribuir, rode os checks, preserve fronteiras e atualize documentação/evidências quando mudar comportamento.
 

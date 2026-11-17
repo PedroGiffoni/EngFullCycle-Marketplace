@@ -1,0 +1,4 @@
+{"level":30,"time":1794413847896,"reqId":"dd00f901-dc09-4fb2-83b6-f0b4067ab5a2","traceId":"9a7be034f7a860b376cb743678b659f3","route":"/api/products","status":200,"msg":"request completed"}
+{"level":30,"time":1794413841227,"reqId":"6fb110b3-bdae-4314-a49a-f47b8b8f69af","traceId":"26e1d15a1b6079e3610d8eb90e1922e8","route":"/api/orders","status":201,"msg":"request completed"}
+{"level":30,"time":1794413841752,"reqId":"646489ce-1c12-40e3-b251-dc3682857ff5","traceId":"5c762a3156f6639369a2eac6182d7a4e","route":"/api/orders/:id/payments","status":202,"msg":"request completed"}
+{"level":30,"time":1794413842014,"reqId":"c3ee57c4-05cb-4bd0-9189-9a297c4ca9fc","traceId":"ac72a740acddbf2e1f66423f383c8f17","route":"/api/orders/:id","status":200,"msg":"request completed"}

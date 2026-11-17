@@ -1,0 +1,35 @@
+{
+  "collectedAt": "2026-11-16T22:20:14.180Z",
+  "source": "docker logs --until 2026-11-12T00:00:00Z forma-brasileira-app-1",
+  "container": "forma-brasileira-app-1",
+  "image": "sha256:3402bd18b4c8c27ae3e68a6ee59191a20c8dd6ae4d3cb5237a77358babb35d64",
+  "kind": "historical-application-logs",
+  "selection": "Registros reais request completed com traceId. Campos selecionados; pid, hostname e informações de rede omitidos. Valores preservados.",
+  "noNewRequests": true,
+  "records": [
+    {
+      "originalLineSha256": "ad2460b094f0f644073b9f61efc9763082167ba58ffca58169fb6e44fe9f01f9",
+      "loggedAt": "2026-11-11T16:17:27.896Z",
+      "reqId": "dd00f901-dc09-4fb2-83b6-f0b4067ab5a2",
+      "route": "/api/products"
+    },
+    {
+      "originalLineSha256": "4f8c7a219dc43b07851a3bb37f170973909bb0c598746fe509480d5a7b0ee590",
+      "loggedAt": "2026-11-11T16:17:21.227Z",
+      "reqId": "6fb110b3-bdae-4314-a49a-f47b8b8f69af",
+      "route": "/api/orders"
+    },
+    {
+      "originalLineSha256": "d6365488f3aad41cdb345de9e9fb0c02d61ad8f65ac262f557d4a17978281c73",
+      "loggedAt": "2026-11-11T16:17:21.752Z",
+      "reqId": "646489ce-1c12-40e3-b251-dc3682857ff5",
+      "route": "/api/orders/:id/payments"
+    },
+    {
+      "originalLineSha256": "fcc8de067160307ce32af3d81b63400e37ef154f5f2a9b0b5c81f0b1c3cc9420",
+      "loggedAt": "2026-11-11T16:17:22.014Z",
+      "reqId": "c3ee57c4-05cb-4bd0-9189-9a297c4ca9fc",
+      "route": "/api/orders/:id"
+    }
+  ]
+}

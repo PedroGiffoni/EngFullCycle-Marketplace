@@ -1,0 +1,12 @@
+Fonte: logs reais do job 131169693504, execução 43214359370, revisão c764bf1.
+Seleção por linhas de resultados; escapes ANSI removidos. Não é uma nova execução.
+
+2026-11-12T12:04:00.9849818Z 10 moderate severity vulnerabilities
+2026-11-12T12:04:08.1925748Z  ✓ tests/contract.test.ts (5 tests) 221ms
+2026-11-12T12:04:09.0721573Z  ✓ tests/integration.test.ts (7 tests) 270ms
+2026-11-12T12:04:09.2377878Z  ✓ tests/domain.test.ts (8 tests) 7ms
+2026-11-12T12:04:09.2903388Z  Test Files  3 passed (3)
+2026-11-12T12:04:09.2905579Z       Tests  20 passed (20)
+2026-11-12T12:04:09.2974672Z All files          |     100 |    91.22 |     100 |     100 |                   
+2026-11-12T12:04:13.9218342Z 10 moderate severity vulnerabilities
+2026-11-12T12:04:47.6381191Z   14 passed (12.0s)
